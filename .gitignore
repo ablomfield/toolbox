@@ -1,0 +1,7 @@
+settings.yaml
+.vscode
+.vscode/*
+.DS_Store
+html/.DS_Store
+.DS_Store
+log/*

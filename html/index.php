@@ -9,7 +9,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Presidio Collab Toolbox</title>
+		<title><?php echo($sitetitle); ?></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />

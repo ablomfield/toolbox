@@ -27,8 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 							<section class="col-6 col-12-narrower">
 								<div class="box highlight">
 									<i class="icon major solid fa-network-wired" style="text-decoration: none;"></i>
-									<h3><a href="/lgw">Local Gateway Config Generator</a></h3>
-									<p>The Local Gateway Config Generator will allow you to instantly build a configration for a Cisco Webex Calling Local Gateway by retrieving the trunk configuration directly from Control Hub and building a complete configuration for a registration based gateway.</p>
+									<h3><a href="/lgw">LGW Config Generator</a></h3>
 								</div>
 							</section>
 						</div>

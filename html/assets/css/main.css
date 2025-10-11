@@ -199,13 +199,13 @@ a {
 	-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 	-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 	transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-	color: #de5e54;
+	color: #0081bc;
 	text-decoration: none;
 	border-bottom: dotted 1px;
 }
 
 a:hover {
-	color: #de5e54;
+	color: #0081bc;
 	border-bottom-color: transparent;
 }
 
@@ -2139,7 +2139,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-	border-color: #de5e54;
+	border-color: #0081bc;
 	background-color: #fffafa;
 }
 
@@ -2268,7 +2268,7 @@ label {
 .icon.major {
 	text-align: center;
 	cursor: default;
-	background-color: #de5e54;
+	background-color: #0081bc;
 	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
@@ -2527,7 +2527,7 @@ button,
 	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
-	background-color: #de5e54;
+	background-color: #0081bc;
 	border-radius: 5px;
 	border: 0;
 	color: #fff;
@@ -2683,7 +2683,7 @@ button.small,
 	display: block;
 	width: 100%;
 	height: 0.75em;
-	background-color: #de5e54;
+	background-color: #0081bc;
 	background-image: url("images/bg01.png");
 }
 
@@ -2730,7 +2730,7 @@ button.small,
 	bottom: -0.5em;
 	left: 50%;
 	margin-left: -0.375em;
-	background-color: #de5e54;
+	background-color: #0081bc;
 	background-image: url("images/bg01.png");
 }
 
@@ -2855,7 +2855,7 @@ button.small,
 }
 
 .wrapper.style3 {
-	background-color: #de5e54;
+	background-color: #0081bc;
 	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
 	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/bg01.png");
@@ -2869,7 +2869,7 @@ button.small,
 }
 
 .wrapper.style3 .button:hover {
-	color: #de5e54 !important;
+	color: #0081bc !important;
 }
 
 /* CTA */
@@ -2902,7 +2902,7 @@ button.small,
 }
 
 #footer a:hover {
-	color: #de5e54;
+	color: #0081bc;
 	border-bottom-color: transparent;
 }
 
@@ -3207,7 +3207,7 @@ button.small,
 		background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url("images/bg01.png");
 		height: 44px;
 		line-height: 44px;
-		box-shadow: 0 4px 0 0 #de5e54;
+		box-shadow: 0 4px 0 0 #0081bc;
 	}
 
 	#titleBar .title {
@@ -3542,7 +3542,7 @@ button.small,
 
 /* When the radio button is checked, add a background */
 .radio-container input:checked ~ .radio-checkmark {
-	background-color: #de5e54;
+	background-color: #0081bc;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */

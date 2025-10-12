@@ -37,12 +37,11 @@ if (isset($_SESSION['authtoken'])) {
 		<!-- Header -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"); ?>
 		<!-- Main Content -->
-		<table class="default">
-			<section class="wrapper style1">
-				<div class="container">
-					<div class="row gtr-200">
-						<section class="col-6 col-12-narrower">
-
+		<section class="wrapper style1">
+			<div class="container">
+				<div class="row gtr-200">
+					<section class="col-6 col-12-narrower">
+						<table class="default">
 							<tr>
 								<th>Username</th>
 								<th>Admin</th>
@@ -81,21 +80,21 @@ if (isset($_SESSION['authtoken'])) {
 								}
 							}
 							?>
-		</table>
-		<p>
-		<form method="post" action="/admin/users/add/">
-			<input type="submit" value="Add User" class="small">
-		</form>
-		</p>
-		<small>
-			<p>Times are displayed in <?php echo ($timezone); ?>.</p>
-		</small>
+						</table>
+						<p>
+						<form method="post" action="/admin/users/add/">
+							<input type="submit" value="Add User" class="small">
+						</form>
+						</p>
+						<small>
+							<p>Times are displayed in <?php echo ($timezone); ?>.</p>
+						</small>
+					</section>
+				</div>
+			</div>
 		</section>
-	</div>
-	</div>
-	</section>
-	<!-- Footer -->
-	<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
+		<!-- Footer -->
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 	</div>
 	<!-- Scripts -->
 	<script src="/assets/js/jquery.min.js"></script>

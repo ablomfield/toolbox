@@ -49,15 +49,15 @@ if ($isadmin == false) {
 								if (mysqli_num_rows($rsdata) > 0) {
 									while ($row = mysqli_fetch_assoc($rsdata)) {
 										echo "      <tr>\n";
-										echo "        <td>" . $row["regdomains.domain"] . "</td>\n";
-										if ($row["regdomains.dateadded"] != null) {
-											$dateadded = new DateTime($row["regdomains.dateadded"], new DateTimeZone('GMT'));
+										echo "        <td>" . $row["domain"] . "</td>\n";
+										if ($row["dateadded"] != null) {
+											$dateadded = new DateTime($row["dateadded"], new DateTimeZone('GMT'));
 											$dateadded->setTimezone(new DateTimeZone($timezone));
 											$dateadded = $dateadded->format('Y-m-d H:i:s');
 										} else {
 											$dateadded = "-";
 										}
-										echo "        <td>" . $row["users.email"] . "</td>\n";
+										echo "        <td>" . $row["email"] . "</td>\n";
 										echo "        <td>" . $dateadded . "</td>\n";
 										echo "        <form action=\"edit/\" method=\"post\">\n";
 										echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";

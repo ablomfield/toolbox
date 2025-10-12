@@ -43,7 +43,7 @@ if ($isadmin == false) {
 								<th></th>
 							</tr>
 							<?php
-							$rsdata = mysqli_query($dbconn, "SELECT regdomains.dateadded, regdomains.domain, users.email FROM regdomains LEFT JOIN users ON regdomains.fkuser = users.pkid ORDER BY regdomains.domain") or die("Error in Selecting " .
+							$rsdata = mysqli_query($dbconn, "SELECT regdomains.pkid, regdomains.domain, regdomains.dateadded, users.email FROM regdomains LEFT JOIN users ON regdomains.fkuser = users.pkid ORDER BY regdomains.domain") or die("Error in Selecting " .
 								mysqli_error($dbconn));
 							if ($rsdata) {
 								if (mysqli_num_rows($rsdata) > 0) {

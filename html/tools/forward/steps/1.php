@@ -15,7 +15,7 @@ if (isset($_REQUEST["emails"])) {
   $emails = "";
 }
 
-echo ("<form action=\"post\">\n");
+echo ("<form method=\"post\">\n");
 echo (" <input type=\"hidden\" name=\"toolstep\" value=\"2\">\n");
 echo (" <input type=\"hidden\" name=\"action\" value=\"unforward\">\n");
 echo (" <p>User Emails:</p>\n");

@@ -57,25 +57,7 @@ if (isset($_GET['code'])) {
     $emailarr = $personjson->emails;
     $email = strtolower($emailarr[0]);
     $emaildomain = substr($email, strpos($email, '@') + 1);
-    $orgid = $personjson->orgId;
     $timezone = $personjson->timeZone;
-
-    // Retrieve Org Details using authtoken
-    $orgurl = "https://webexapis.com/v1/organizations/" . $orgid;
-    $getorg = curl_init($orgurl);
-    curl_setopt($getorg, CURLOPT_CUSTOMREQUEST, "GET");
-    curl_setopt($getorg, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt(
-        $getorg,
-        CURLOPT_HTTPHEADER,
-        array(
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $authtoken
-        )
-    );
-    $orgdata = curl_exec($getorg);
-    $orgjson = json_decode($orgdata);
-    $orgname = $orgjson->displayName;
 
     // Check if User Exists in Database
     $rsusercheck = mysqli_query($dbconn, "SELECT * FROM users WHERE email = '" . $email . "'");
@@ -93,7 +75,7 @@ if (isset($_GET['code'])) {
                 exit("Denied - domain not allowed ($emaildomain)");
             }
         }
-        $insertsql = "INSERT INTO users (personid, displayname, email, orgid, lastaccess, timezone) VALUES('" . $personid . "', '" . str_replace("'", "''", $displayname) . "', '" . $email . "', '" . $orgid . "', '" . $lastaccess . "', '" . $timezone . "')";
+        $insertsql = "INSERT INTO users (personid, displayname, email, lastaccess, timezone) VALUES('" . $personid . "', '" . str_replace("'", "''", $displayname) . "', '" . $email . "', '" . $lastaccess . "', '" . $timezone . "')";
         mysqli_query($dbconn, $insertsql);
         $userpkid = $dbconn->pkid;
         $_SESSION["userpkid"] = $userpkid;
@@ -102,8 +84,6 @@ if (isset($_GET['code'])) {
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
         $_SESSION["authtoken"] = $authtoken;
-        $_SESSION["orgid"] = $orgid;
-        $_SESSION["orgname"] = $orgname;
         mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGIN')");
         header("Location: /");
     } else {
@@ -111,7 +91,7 @@ if (isset($_GET['code'])) {
         $isadmin = $rowusercheck["isadmin"];
         $userpkid = $rowusercheck["pkid"];
         $timezone = $rowusercheck["timezone"];
-        $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', orgid = '" . $orgid . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
+        $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
         mysqli_query($dbconn, $updatesql);
         $_SESSION["userpkid"] = $userpkid;
         $_SESSION["personid"] = $personid;
@@ -119,8 +99,6 @@ if (isset($_GET['code'])) {
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
         $_SESSION["authtoken"] = $authtoken;
-        $_SESSION["orgid"] = $orgid;
-        $_SESSION["orgname"] = $orgname;
         $_SESSION["isadmin"] = $isadmin;
         mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGIN')");
         header("Location: /");

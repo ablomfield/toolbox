@@ -707,7 +707,7 @@ if ($action == "debug") {
 							echo ("  <form method=\"post\">\n");
 							echo ("  <input type=\"hidden\" name=\"action\" value=\"debug\">\n");
 							echo ("  Enable Debug: <input type=\"checkbox\" name=\"enabledebug\" value=\"1\" onChange=\"this.form.submit()\"");
-							if ($_SESSION['enabledebug']) {
+							if ($setenabledebug) {
 								echo " checked";
 							}
 							echo (">\n");

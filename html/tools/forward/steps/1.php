@@ -1,12 +1,4 @@
 <?php
-if (isset($_REQUEST["locationid"])) {
-  $locationid = $_REQUEST["locationid"];
-  $_SESSION["locationid"] = $locationid;
-} elseif (isset($_SESSION["locationid"])) {
-  $locationid = $_SESSION["locationid"];
-} else {
-  die("Sorry, an error has occured.");
-}
 $orgid = $_SESSION["orgid"];
 
 if (isset($_REQUEST["emails"])) {

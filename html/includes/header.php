@@ -12,6 +12,12 @@
 						}
 						echo ("><a href=\"/\">Home</a></li>\n");
 						echo ("					    <li");
+						if ($sitesec == "customers") {
+							echo (" class=\"current\"");
+						}
+						echo ("><a href=\"/customers/\">Customers</a></li>\n");
+
+						echo ("					    <li");
 						if ($sitesec == "tools") {
 							echo (" class=\"current\"");
 						}

@@ -7,18 +7,8 @@ date_default_timezone_set("America/Chicago");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 
 // Get Login Details
-if (isset($_SESSION['authtoken'])) {
-	$loggedin = True;
-	$displayname = $_SESSION["displayname"];
-	$authtoken = $_SESSION["authtoken"];
-	if (isset($_SESSION['orgname'])) {
-		$orgname = $_SESSION["orgname"];
-	}
-	$isadmin = $_SESSION["isadmin"];
-	$timezone = $_SESSION["timezone"];
-} else {
-	$loggedin = False;
-}
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
+
 ?>
 <!DOCTYPE HTML>
 <html>

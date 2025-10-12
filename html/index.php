@@ -7,19 +7,11 @@ date_default_timezone_set("America/Chicago");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 
 // Get Login Details
-if (isset($_SESSION['authtoken'])) {
-	$loggedin = True;
-	$displayname = $_SESSION["displayname"];
-	$authtoken = $_SESSION["authtoken"];
-	if (isset($_SESSION['orgname'])) {
-		$orgname = $_SESSION["orgname"];
-	} else {
-		header('Location: /customers/');
-	}
-	$isadmin = $_SESSION["isadmin"];
-	$timezone = $_SESSION["timezone"];
-} else {
-	$loggedin = False;
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
+
+// Check Customer Set
+if (isset($_SESSION['orgname']) == false) {
+	header('Location: /customers/');
 }
 ?>
 <!DOCTYPE HTML>

@@ -45,11 +45,11 @@ if (curl_getinfo($getlocation, CURLINFO_HTTP_CODE) == "200") {
     echo ("					      <th align=\"right\" colspan=\"2\">Action:</th>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"activate\"><span class=\"radio-checkmark\"></span>/td>\n");
+    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"activate\"><span class=\"radio-checkmark\"></span></td>\n");
     echo ("					      <td>Activate</label></td>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"deactivate\"><span class=\"radio-checkmark\"></span>/td>\n");
+    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"deactivate\"><span class=\"radio-checkmark\"></span></td>\n");
     echo ("					      <td>Deactivate</label></td>\n");
     echo ("					    </tr>\n");    
     echo ("					    <tr>\n");

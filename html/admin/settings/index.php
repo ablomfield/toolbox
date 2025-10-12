@@ -78,7 +78,7 @@ if ($action == "update" && $pkid <> "") {
 							$selfregistration = $row["selfregistration"];
 							?>
 							<input type="hidden" name="action" value="update">
-							<table>
+							<table class="default">
 								<tr>
 									<td colspan="2"><b>General Settings</b></td>
 								</tr>
@@ -88,6 +88,10 @@ if ($action == "update" && $pkid <> "") {
 								</tr>
 								<tr>
 									<td colspan="2"><b>Integration Settings</b></td>
+								</tr>
+								<tr>
+									<td>Client ID</td>
+									<td><input type="text" name="name" size="50" value="<?php echo ($client_id); ?>">
 								</tr>
 								<tr>
 									<td colspan="2"><b>Login Settings</b></td>

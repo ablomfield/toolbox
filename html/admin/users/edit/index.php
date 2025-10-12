@@ -82,7 +82,7 @@ if ($action == "delete" && $pkid <> "") {
 							?>
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
-							<table>
+							<table class="default">
 								<tr>
 									<td>Email Address</td>
 									<td><input type="text" name="email" size="50" value="<?php echo ($useremail); ?>" disabled>
@@ -100,7 +100,7 @@ if ($action == "delete" && $pkid <> "") {
 									</td>
 								</tr>
 								<tr>
-									<td><input type="submit" value="Update User" class="small">
+									<td><input type="submit" value="Update User" class="small"></td>
 						</form>
 						<td>
 							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($useremail); ?>?');">

@@ -26,7 +26,7 @@ $locationsdata = curl_exec($getlocations);
 if (curl_errno($getlocations) == "0") {
   $locationsjson = json_decode($locationsdata);
   $locationsarray = json_decode($locationsdata, true);
-  $locationcount = count($locationcount['trunks']);
+  $locationcount = count($locationsarray['items']);
   echo ("					  <p>Found " . $locationcount . " location(s) for $orgname</p>\n");
   if ($locationcount > 0) {
     echo ("					  <p>Select trunk to build configuration</p>\n");

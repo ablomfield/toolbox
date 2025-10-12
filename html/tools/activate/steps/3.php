@@ -47,11 +47,16 @@ curl_setopt(
 );
 $actdata = curl_exec($putact);
 $actjson = json_decode($actdata);
+$actarray = json_decode($actdata, true);
+$errorcount = count($actarray['errors']);
 
 if (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
   echo ("<p><font color=\"green\">Success! Numbers " . $action . "D.</font></p>\n");
-} elseif (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
+} elseif (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "400") {
   echo ("<p><font color=\"red\">Error! Unable to perform request.</font></p>\n");
+  for ($x = 0; $x < $errorcount; $x++) {
+    echo($actjson->errors[$x]->number . " - " . $actjson->errors[$x]->errorMessage . "<br>\n");
+  }
 } else {
   echo ("<p><font color=\"red\">Error! Unable to perform request.</font></p>\n");
 }

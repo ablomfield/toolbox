@@ -39,5 +39,5 @@ end</textarea>
 <br>
 <h3>Build CUCM Trunk</h3>
 <p>This tool assumes that the local gateway is being deployed between on on-premise CUCM cluster and the Webex Calling Cloud to facilitate a migration or hybrid deployment. Before the CUBE is configured and registered, the necessary trunk configuration must be completed in CUCM.</p>
-<p>Now that you have completed all the prerequisite tasks, click the "Sign In in with Webex" button below to continue.</p>
-<p><button onclick="window.location.href='<?php echo ($oauth_url); ?>'" class="button">Sign In with Webex</button></p>
+<p>Now that you have completed all the prerequisite tasks, click the "Continue".</p>
+<p><form method="post"><input type="hidden" name="lgwstep" value="1"><input type="submit" value="Continue"></form></p>

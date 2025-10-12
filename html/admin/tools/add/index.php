@@ -16,18 +16,18 @@ if ($isadmin == false) {
 
 // Check Post
 if (isset($_REQUEST['action'])) {
-  $action = $_REQUEST['action'];
+	$action = $_REQUEST['action'];
 } elseif (isset($_GET['action'])) {
-  $action = $_GET['action'];
+	$action = $_GET['action'];
 } else {
-  $action = '';
+	$action = '';
 }
 
 // User Actions
 if ($action == "add") {
-  $dbconn->query("INSERT INTO tools (`fkuser`, `dateadded`, `isactive`, `name`, `icon`, `path`) VALUES('$userpkid', now(), ". $_REQUEST['isactive'] . ", '" . $_REQUEST['name'] . "', '" . $_REQUEST['icon'] . "', '" . $_REQUEST['path'] . "')");
-  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added tool " . $_REQUEST['name'] . "')");
-  header("Location: /admin/users/");
+	$dbconn->query("INSERT INTO tools (`fkuser`, `dateadded`, `isactive`, `name`, `icon`, `path`) VALUES('$userpkid', now(), " . $_REQUEST['isactive'] . ", '" . $_REQUEST['name'] . "', '" . $_REQUEST['icon'] . "', '" . $_REQUEST['path'] . "')");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added tool " . $_REQUEST['name'] . "')");
+	header("Location: /admin/users/");
 }
 ?>
 <!DOCTYPE HTML>
@@ -55,8 +55,17 @@ if ($action == "add") {
 							<input type="hidden" name="action" value="add">
 							<table>
 								<tr>
-									<td>Email Address</td>
+									<td>Name</td>
 									<td><input type="text" name="name" size="50" value="">
+								</tr>
+								<tr>
+									<td>
+										<label class="checkboxcontainer">
+											<input type="checkbox" name="isactive" value="1">
+											<span class="checkmark"></span>
+										</label>
+										<input type="checkbox" name="isactive" value="1">
+									</td>
 								</tr>
 								<tr>
 									<td>Icon</td>
@@ -65,7 +74,7 @@ if ($action == "add") {
 								<tr>
 									<td>Path</td>
 									<td><input type="text" name="path" size="50" value="">
-								</tr>								
+								</tr>
 								<tr>
 									<td><input type="submit" value="Add Tool" class="small">
 						</form>

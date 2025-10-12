@@ -26,7 +26,7 @@ if (isset($_REQUEST['action'])) {
 // User Actions
 if ($action == "add") {
   $dbconn->query("INSERT INTO users (`email`) VALUES('" . $_REQUEST['email'] . "')");
-  mysqli_query($dbconn, "INSERT INTO history (fkuser, typehistory, historytime, details) VALUES($userpkid,4,NOW(),'Added user " . $_REQUEST['email'] . "')");
+  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added user " . $_REQUEST['email'] . "')");
   header("Location: /admin/users/");
 }
 ?>

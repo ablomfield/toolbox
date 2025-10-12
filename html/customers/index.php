@@ -61,8 +61,8 @@ if (isset($_SESSION['authtoken'])) {
 								$orgsarray = json_decode($orgsdata, true);
 								$orgcount = count($orgsarray['items']);
 								echo ("					  <p>Select an organization to search for trunks:</p>\n");
-								echo ("					  <form method=\"post\" action=\"/lgw/\">\n");
-								echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
+								echo ("					  <form method=\"post\" action=\"/customers/\">\n");
+								echo ("					    <input type=\"hidden\" name=\"action\" value=\"setcustomer\">\n");
 								echo ("					    <table class=\"default\">\n");
 								for ($x = 0; $x < $orgcount; $x++) {
 									echo ("					      <tr>\n");
@@ -78,7 +78,7 @@ if (isset($_SESSION['authtoken'])) {
 								}
 								echo ("					      <tr>\n");
 								echo ("					        <td colspan=\"2\">\n");
-								echo ("					          <input type=\"submit\" value=\"Continue\" class=\"button\"><br/>\n");
+								echo ("					          <input type=\"submit\" value=\"Select\" class=\"button\"><br/>\n");
 								echo ("					        </td>\n");
 								echo ("					      </tr>\n");
 								echo ("					    </table>\n");
@@ -86,17 +86,6 @@ if (isset($_SESSION['authtoken'])) {
 							} else {
 								echo "					  <p>Sorry, you don't have access to any organizations.</p>\n";
 							}
-							echo ("           <table class=\"default\">\n");
-							echo ("             <tr>\n");
-							echo ("					      <form method=\"post\">\n");
-							echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($lgwstep - 1) . "\">\n");
-							echo ("					      <td><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
-							echo ("					      </form>\n");
-							echo ("					      <form method=\"post\" action=\"/lgw/logout\">\n");
-							echo ("					      <td><input type=\"submit\" value=\"Start Over\" class=\"button\"></td>\n");
-							echo ("					      </form>\n");
-							echo ("             </tr>\n");
-							echo ("           </table>\n");
 							?>
 							?>
 						</div>

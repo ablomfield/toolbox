@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Import Settings
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 
@@ -11,7 +13,6 @@ if (isset($_SESSION["email"])) {
 }
 
 // Log Out
-session_start();
 session_destroy();
 header('Location: /');
 ?>

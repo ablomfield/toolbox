@@ -9,6 +9,11 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 // Get Login Details
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
+// Check Admin
+if ($isadmin == false) {
+	header('Location: /');
+}
+
 // Check Post
 if (isset($_REQUEST['action'])) {
 	$action = $_REQUEST['action'];

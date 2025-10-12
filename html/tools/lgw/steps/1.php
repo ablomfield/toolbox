@@ -47,31 +47,33 @@ if (curl_errno($gettrunks) == "0") {
   $trunksarray = json_decode($trunksdata, true);
   $trunkcount = count($trunksarray['trunks']);
   echo ("					  <p>Found " . $trunkcount . " trunk(s) for $orgname</p>\n");
-  echo ("					  <p>Select trunk to build configuration</p>\n");
-  echo ("					  <form method=\"post\">\n");
-  echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
-  echo ("					    <table class=\"default\">\n");
-  for ($x = 0; $x < $trunkcount; $x++) {
-    if ($trunksjson->trunks[$x]->trunkType == "REGISTERING") {
-      echo ("					      <tr>\n");
-      echo ("					        <td>\n");
-      echo ("     					    <label class=\"radio-container\">\n");
-      echo ("			     		        <input type=\"radio\" name=\"trunkid\" value=\"" . $trunksjson->trunks[$x]->id . "\">\n");
-      echo ("					            <span class=\"radio-checkmark\"></span>\n");
-      echo ("					        </td>\n");
-      echo ("					        <td>\n");
-      echo ("					         " . $trunksjson->trunks[$x]->name . "</label>\n");
-      echo ("					        </td>\n");
-      echo ("					      </tr>\n");
+  if ($trunkcount > 0) {
+    echo ("					  <p>Select trunk to build configuration</p>\n");
+    echo ("					  <form method=\"post\">\n");
+    echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
+    echo ("					    <table class=\"default\">\n");
+    for ($x = 0; $x < $trunkcount; $x++) {
+      if ($trunksjson->trunks[$x]->trunkType == "REGISTERING") {
+        echo ("					      <tr>\n");
+        echo ("					        <td>\n");
+        echo ("     					    <label class=\"radio-container\">\n");
+        echo ("			     		        <input type=\"radio\" name=\"trunkid\" value=\"" . $trunksjson->trunks[$x]->id . "\">\n");
+        echo ("					            <span class=\"radio-checkmark\"></span>\n");
+        echo ("					        </td>\n");
+        echo ("					        <td>\n");
+        echo ("					         " . $trunksjson->trunks[$x]->name . "</label>\n");
+        echo ("					        </td>\n");
+        echo ("					      </tr>\n");
+      }
     }
+    echo ("					      <tr>\n");
+    echo ("					        <td colspan=\"2\">\n");
+    echo ("					          <input type=\"submit\" value=\"Continue\" class=\"button\"><br/>\n");
+    echo ("					        </td>\n");
+    echo ("					      </tr>\n");
+    echo ("					    </table>\n");
+    echo ("					  </form>\n");
   }
-  echo ("					      <tr>\n");
-  echo ("					        <td colspan=\"2\">\n");
-  echo ("					          <input type=\"submit\" value=\"Continue\" class=\"button\"><br/>\n");
-  echo ("					        </td>\n");
-  echo ("					      </tr>\n");
-  echo ("					    </table>\n");
-  echo ("					  </form>\n");
 } else {
   echo "					  <p>Sorry, no trunks found.</p>\n";
 }

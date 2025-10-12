@@ -22,7 +22,7 @@
 						}
 						echo ("><a href=\"#\">Tools</a>\n");
 						echo ("					      <ul>\n");
-						$rsdata = mysqli_query($dbconn, "SELECT name, path FROM tools ORDER BY name") or die("Error in Selecting " . mysqli_error($dbconn));
+						$rsdata = mysqli_query($dbconn, "SELECT name, path FROM tools WHERE isactive = 1 ORDER BY name") or die("Error in Selecting " . mysqli_error($dbconn));
 						if ($rsdata) {
 							if (mysqli_num_rows($rsdata) > 0) {
 								while ($row = mysqli_fetch_assoc($rsdata)) {

@@ -17,7 +17,7 @@ if (isset($_REQUEST["action"])) {
 if (isset($_REQUEST["numbers"])) {
   $numbers = $_REQUEST["numbers"];
   $numbers = str_replace("\r", "", $numbers);
-  $numarr = explode("\n",$numbers);
+  $numarr = explode("\n", $numbers);
 } else {
   die("Sorry, an error has occured.");
 }
@@ -48,6 +48,13 @@ curl_setopt(
 $actdata = curl_exec($putact);
 $actjson = json_decode($actdata);
 
+if (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
+  echo ("<p><font color=\"green\">Success! Numbers " . $action . "D.</font></p>\n");
+} elseif (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
+  echo ("<p><font color=\"red\">Error! Unable to perform request.</font></p>\n");
+} else {
+  echo ("<p><font color=\"red\">Error! Unable to perform request.</font></p>\n");
+}
 echo ("           <table class=\"default\">\n");
 echo ("             <tr>\n");
 echo ("					      <form method=\"post\">\n");
@@ -61,7 +68,7 @@ if ($_SESSION['enabledebug']) {
   echo ("URL: $acturl\n");
   echo ("Data:\n");
   print_r($postdata);
-  echo ("\n");  
+  echo ("\n");
   echo ("JSON:\n$postjson\n");
   echo ("Auth Token: $authtoken\n");
   echo ("Error Code: " . curl_getinfo($putact, CURLINFO_HTTP_CODE) . "\n");

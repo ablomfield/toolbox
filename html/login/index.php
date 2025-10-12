@@ -84,7 +84,7 @@ if (isset($_GET['code'])) {
         $_SESSION["email"] = $email;
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdescription) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'". $email . "','LOGGED IN')");
         header("Location: /");
     } else {
         $rowusercheck = mysqli_fetch_assoc($rsusercheck);
@@ -103,7 +103,7 @@ if (isset($_GET['code'])) {
         $_SESSION["email"] = $email;
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdescription) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'". $email . "','LOGGED IN')");
         header("Location: /");
     }
 } else {

@@ -10,7 +10,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
 // Check Customer Set
-if (isset($_SESSION['orgname']) == false) {
+if (isset($_SESSION['orgname']) == false && $loggedin == false) {
 	header('Location: /customers/');
 }
 ?>

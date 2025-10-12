@@ -20,4 +20,7 @@ if (isset($_SESSION['authtoken'])) {
     $email = $_SESSION["email"];
 } else {
     $loggedin = False;
+    if ($sitesec != "home") {
+        header('Location: /');
+    }
 }

@@ -15,6 +15,7 @@ if (isset($_SESSION['authtoken'])) {
 		$orgname = $_SESSION["orgname"];
 	}
 	$isadmin = $_SESSION["isadmin"];
+	$timezone = $_SESSION["timezone"];
 } else {
 	$loggedin = False;
 }
@@ -39,9 +40,7 @@ if (isset($_SESSION['authtoken'])) {
 		<table id="list">
 			<tr>
 				<th>Username</th>
-				<th>Device Admin</th>
-				<th>System Admin</th>
-				<th>Migration Admin</th>
+				<th>Admin</th>
 				<th>Last Access</th>
 				<th></th>
 			</tr>
@@ -61,21 +60,7 @@ if (isset($_SESSION['authtoken'])) {
 							$lastaccess = "-";
 						}
 						echo "        <td align=\"center\">";
-						if ($row["isdevadmin"]) {
-							echo ("<img src=\"/images/small-check-mark-icon.png\">");
-						} else {
-							echo ("&nbsp;");
-						}
-						echo ("</td>\n");
-						echo "        <td align=\"center\">";
-						if ($row["issysadmin"]) {
-							echo ("<img src=\"/images/small-check-mark-icon.png\">");
-						} else {
-							echo ("&nbsp;");
-						}
-						echo ("</td>\n");
-						echo "        <td align=\"center\">";
-						if ($row["ismigadmin"]) {
+						if ($row["isadmin"]) {
 							echo ("<img src=\"/images/small-check-mark-icon.png\">");
 						} else {
 							echo ("&nbsp;");

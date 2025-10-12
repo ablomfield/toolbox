@@ -17,6 +17,7 @@ if (isset($_SESSION['authtoken'])) {
 		header('Location: /customers/');
 	}
 	$isadmin = $_SESSION["isadmin"];
+	$timezone = $_SESSION["timezone"];
 } else {
 	$loggedin = False;
 }

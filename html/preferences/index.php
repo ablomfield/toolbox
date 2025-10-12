@@ -31,6 +31,7 @@ if (isset($_REQUEST['enabledebug'])) {
   $enabledebug = 1;
 } else {
   $setenabledebug = 0;
+  $enabledebug = 0;
 }
 
 // User Actions

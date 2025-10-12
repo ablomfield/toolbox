@@ -2,20 +2,27 @@
 					<!-- Logo -->
 					<h1><a href="/"><img height="75px" src="/images/icononly_transparent_nobuffer.png" alt="<?php echo ($sitetitle); ?>"></a>&nbsp;&nbsp;&nbsp;<a href="/" id="logo"><?php echo ($sitetitle); ?></a></h1>
 					<!-- Nav -->
-<?php					 
-					echo("					<nav id=\"nav\">\n");
-						echo("					  <ul>\n");
-							echo("					    <li");
-								if ($sitesec=="home"){ echo(" class=\"current\""); }
-								echo("><a href=\"/\">Home</a></li>\n");
-								echo("					    <li");
-									if ($sitesec=="tools"){ echo(" class=\"current\""); }
-									echo("><a href=\"#\">Tools</a>\n");
-									echo("					      <ul>\n");
-										echo("					        <li><a href=\"/lgw\">LGW Generator</a></li>\n");
-										echo("					      </ul>\n");
-									echo("					    </li>\n");
-									echo("					    <li><a href=\"/logout\">Logout</a></li>\n");
-									echo("					  </ul>\n");
-						echo("					</nav>\n");
-?>				</div>
+					<?php
+					if ($loggedin) {
+						echo ("					<nav id=\"nav\">\n");
+						echo ("					  <ul>\n");
+						echo ("					    <li");
+						if ($sitesec == "home") {
+							echo (" class=\"current\"");
+						}
+						echo ("><a href=\"/\">Home</a></li>\n");
+						echo ("					    <li");
+						if ($sitesec == "tools") {
+							echo (" class=\"current\"");
+						}
+						echo ("><a href=\"#\">Tools</a>\n");
+						echo ("					      <ul>\n");
+						echo ("					        <li><a href=\"/lgw\">LGW Generator</a></li>\n");
+						echo ("					      </ul>\n");
+						echo ("					    </li>\n");
+						echo ("					    <li><a href=\"/logout\">Logout</a></li>\n");
+						echo ("					  </ul>\n");
+						echo ("					</nav>\n");
+					}
+					?>
+				</div>

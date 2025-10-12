@@ -12,7 +12,7 @@ if (isset($_SESSION['authtoken'])) {
 	$displayname = $_SESSION["displayname"];
 	$authtoken = $_SESSION["authtoken"];
 	$orgname = $_SESSION["orgname"];
-	$isadmin = $_SERVER["isadmin"];
+	$isadmin = $_SESSION["isadmin"];
 } else {
 	$loggedin = False;
 }

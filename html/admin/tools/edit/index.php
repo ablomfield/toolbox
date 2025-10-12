@@ -33,7 +33,7 @@ if (isset($_REQUEST['pkid'])) {
 
 // User Actions
 if ($action == "update" && $pkid <> "") {
-	$dbconn->query("UPDATE tools SET name = '" . $_REQUEST['name'] . "' WHERE pkid = '" . $pkid . "'");
+	$dbconn->query("UPDATE tools SET name = '" . $_REQUEST['name'] . "', isactive = " . $_REQUEST['isactive'] . ", icon = '" . $_REQUEST['icon'] . "', path = '" . $_REQUEST['path'] . "' WHERE pkid = '" . $pkid . "'");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated tools " . $_REQUEST['name'] . "')");
 	header("Location: /admin/tools/");
 }

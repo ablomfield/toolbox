@@ -101,10 +101,10 @@ if ($action == "delete" && $pkid <> "") {
 									<td><input type="submit" value="Update User" class="small">
 						</form>
 						<td>
-							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($email); ?>?');">
+							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($useremail); ?>?');">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
-								<input type="hidden" name="email" value="<?php echo ($email); ?>">
+								<input type="hidden" name="email" value="<?php echo ($useremail); ?>">
 								<input type="submit" value="Delete User" class="small">
 							</form>
 						</td>

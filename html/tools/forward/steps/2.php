@@ -33,7 +33,7 @@ for ($x = 0; $x < $usercount; $x++) {
   echo ("Checking $emailarr[$x].<br />\n");
   $personid = webexgetpersonid($authtoken,$emailarr[$x]);
   if ($personid != NULL) {
-    echo ("User found. Attempting to unfordward.<br />\n");
+    echo ("User found. Attempting to unforward.<br />\n");
   } else {
     echo ("User not found!<br />\n");
   }

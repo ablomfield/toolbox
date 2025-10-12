@@ -32,11 +32,14 @@
 							}
 							echo ("><a href=\"#\">Admin</a>\n");
 							echo ("					      <ul>\n");
-							echo ("					        <li><a href=\"/admin/domains/\">Domains</a></li>\n");
-							echo ("					        <li><a href=\"/admin/history/\">History</a></li>\n");
-							echo ("					        <li><a href=\"/admin/settings/\">Settings</a></li>\n");
-							echo ("					        <li><a href=\"/admin/tools/\">Tools</a></li>\n");
-							echo ("					        <li><a href=\"/admin/users/\">Users</a></li>\n");
+							$rsdata = mysqli_query($dbconn, "SELECT name, path FROM tools ORDER BY name") or die("Error in Selecting " . mysqli_error($dbconn));
+							if ($rsdata) {
+								if (mysqli_num_rows($rsdata) > 0) {
+									while ($row = mysqli_fetch_assoc($rsdata)) {
+										echo ("					        <li><a href=\"" . $row["path"] . "\">" . $row["name"] . "</a></li>\n");
+									}
+								}
+							}
 							echo ("					      </ul>\n");
 							echo ("					    </li>\n");
 						}

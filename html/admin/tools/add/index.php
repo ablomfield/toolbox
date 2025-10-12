@@ -27,7 +27,7 @@ if (isset($_REQUEST['action'])) {
 if ($action == "add") {
 	$dbconn->query("INSERT INTO tools (`fkuser`, `dateadded`, `isactive`, `name`, `icon`, `path`) VALUES('$userpkid', now(), " . $_REQUEST['isactive'] . ", '" . $_REQUEST['name'] . "', '" . $_REQUEST['icon'] . "', '" . $_REQUEST['path'] . "')");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added tool " . $_REQUEST['name'] . "')");
-	header("Location: /admin/users/");
+	header("Location: /admin/tools/");
 }
 ?>
 <!DOCTYPE HTML>

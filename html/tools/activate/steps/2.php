@@ -59,8 +59,7 @@ if (curl_getinfo($getlocation, CURLINFO_HTTP_CODE) == "200") {
     echo ("					      <th colspan =\"2\" align=\"right\"><textarea name=\"number\"></textarea></th>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <td align=\"left\"><input type=\"submit\" value=\"Continue\"></td>\n");
-    echo ("					      <td align=\"right\">&nbsp;</td>\n");
+    echo ("					      <td colspan=\"2\"align=\"left\"><input type=\"submit\" value=\"Continue\"></td>\n");
     echo ("					    </tr>\n");
     echo ("					  </table>\n");
     echo ("					  </form>\n");

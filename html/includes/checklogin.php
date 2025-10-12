@@ -12,7 +12,7 @@ if (isset($_SESSION['authtoken'])) {
     if (isset($_SESSION['enabledebug'])) {
         $enabledebug = $_SESSION["enabledebug"];
     } else {
-        $enabledebug = false;
+        $enabledebug = 0;
     }
 
     $isadmin = $_SESSION["isadmin"];

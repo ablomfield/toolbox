@@ -38,7 +38,7 @@ if (isset($_REQUEST['selfregistration'])) {
 
 // User Actions
 if ($action == "update") {
-	$dbconn->query("UPDATE settings SET `sitetitle` = '" . $_REQUEST['sitetitle'] . "', `lockdomains` = $setlockdomains, `selfregistration` = $setselfregistration");
+	$dbconn->query("UPDATE settings SET `sitetitle` = '" . $_REQUEST['sitetitle'] . "', `client_id` = '" . $_REQUEST['client_id'] . "', `client_secret` = '" . $_REQUEST['client_secret'] . "', `integration_id` = '" . $_REQUEST['integration_id'] . "', `oauth_url` = '" . $_REQUEST['oauth_url'] . "', `lockdomains` = $setlockdomains, `selfregistration` = $setselfregistration");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated settings')");
 }
 ?>

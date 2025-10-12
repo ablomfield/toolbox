@@ -85,8 +85,8 @@ echo ("             </tr>\n");
 echo ("           </table>\n");
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
-  echo ("Org ID: $orgid\n");
-  echo ("Status: " . curl_errno($gettrunks) . "\n");
+  echo ("URL: $trunksurl\n");
+  echo ("Auth Token: $authtoken\n");
   echo ("Error Code: " . curl_getinfo($gettrunks, CURLINFO_HTTP_CODE) . "\n");
   echo ("Trunks Response:\n");
   print_r($trunksdata);

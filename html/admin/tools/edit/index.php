@@ -91,7 +91,7 @@ if ($action == "delete" && $pkid <> "") {
 							?>
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
-							<table>
+							<table class="default">
 								<tr>
 									<td>Name</td>
 									<td><input type="text" name="name" size="50" value="<?php echo ($name); ?>">

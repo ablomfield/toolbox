@@ -9,10 +9,10 @@ if (isset($_REQUEST["locationid"])) {
 }
 $orgid = $_SESSION["orgid"];
 
-if (isset($_REQUEST["numbers"])) {
-  $numbers = $_REQUEST["numbers"];
+if (isset($_REQUEST["emails"])) {
+  $emails = $_REQUEST["emails"];
 } else {
-  $numbers = "";
+  $emails = "";
 }
 
 echo ("<form action=\"post\">\n");

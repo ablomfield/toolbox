@@ -83,14 +83,12 @@ echo ("             </tr>\n");
 echo ("           </table>\n");
 if ($enabledebug) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
-  //echo ("URL: $acturl\n");
-  //echo ("Data:\n");
-  //print_r($postdata);
-  //echo ("\n");
-  //echo ("JSON:\n$postjson\n");
-  //echo ("Auth Token: $authtoken\n");
-  //echo ("Error Code: " . curl_getinfo($putact, CURLINFO_HTTP_CODE) . "\n");
-  //echo ("Activation Response:\n");
-  //print_r($actdata);
+  echo ("URL: $put\n");
+  echo ("\n");
+  echo ("JSON:\n$putjson\n");
+  echo ("Auth Token: $authtoken\n");
+  echo ("Error Code: " . curl_getinfo($putfwd, CURLINFO_HTTP_CODE) . "\n");
+  echo ("Activation Response:\n");
+  print_r($fwddata);
   echo ("  </textarea><br>\n");
 }

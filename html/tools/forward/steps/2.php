@@ -28,7 +28,9 @@ $orgid = $_SESSION["orgid"];
 // Unforward Users
 $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
-
+for ($x = 0; $x < $usercount; $x++) {
+  echo ("Checking $emailarr[0].\n");
+}
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   //echo ("URL: $acturl\n");

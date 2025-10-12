@@ -2,5 +2,5 @@
 	<p>This tool is used to activate or deactivate numbers in the Webex Calling dial plan.</p>
 	<p>You will need to select the location to edit numbers, choose whether to activate or deactivate, and provide a list of up to 500 numbers (one numberper row).</p>
 	<p>
-	<form method="post"><input type="hidden" name="lgwstep" value="1"><input type="submit" value="Continue"></form>
+	<form method="post"><input type="hidden" name="toolstep" value="1"><input type="submit" value="Continue"></form>
 	</p>

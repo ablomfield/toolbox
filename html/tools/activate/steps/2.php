@@ -30,7 +30,7 @@ if ($locationjson->pstnConnectionType != "LOCAL_GATEWAY") {
   echo ("           <table class=\"default\">\n");
   echo ("             <tr>\n");
   echo ("					      <form method=\"post\">\n");
-  echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($lgwstep - 1) . "\">\n");
+  echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
   echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
   echo ("					      </form>\n");
   echo ("             </tr>\n");
@@ -38,7 +38,7 @@ if ($locationjson->pstnConnectionType != "LOCAL_GATEWAY") {
 } else {
   echo ("					  <p>Please enter the following information to build the configuration file...</p>\n");
   echo ("					  <form method=\"post\"\">\n");
-  echo ("					  <input type=\"hidden\" name=\"lgwstep\" value=\"3\">\n");
+  echo ("					  <input type=\"hidden\" name=\"toolstep\" value=\"3\">\n");
   echo ("					  <table class=\"default\">\n");
   echo ("					    <tr>\n");
   echo ("					      <th align=\"right\">Location</th>\n");
@@ -89,7 +89,7 @@ if ($locationjson->pstnConnectionType != "LOCAL_GATEWAY") {
   echo ("           <table class=\"default\">\n");
   echo ("             <tr>\n");
   echo ("					      <form method=\"post\">\n");
-  echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($lgwstep - 1) . "\">\n");
+  echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
   echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
   echo ("					      </form>\n");
   echo ("             </tr>\n");

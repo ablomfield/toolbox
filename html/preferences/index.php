@@ -706,11 +706,11 @@ if ($action == "debug") {
 						if ($isadmin) {
 							echo ("  <form method=\"post\">\n");
 							echo ("  <input type=\"hidden\" name=\"action\" value=\"debug\">\n");
-							echo ("  Enable Debug: <input type=\"checkbox\" name=\"enabledebug\" class=\"large\" value=\"1\" onChange=\"this.form.submit()\"");
+							echo ("  <label class=\"checkboxcontainer\"> Enable Debug:<input type=\"checkbox\" name=\"enabledebug\" value=\"1\" onChange=\"this.form.submit()\"");
 							if ($setenabledebug) {
 								echo " checked";
 							}
-							echo (">\n");
+							echo("<span class=\"checkmark\"></span></label>\n");
 							echo ("</form>\n");
 						}
 						?>

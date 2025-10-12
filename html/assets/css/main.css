@@ -3513,77 +3513,70 @@ button.small,
 }
 
 /* Checkboxes */
-input[type="checkbox"]:before {
+.checkboxcontainer input {
+  display: none;
+}
+
+.checkboxcontainer {
+  display: inline-block;
+  padding-left: 30px;
   position: relative;
-  display: block;
-  width: 22px;
-  height: 22px;
-  border: 1px solid #808080;
-  content: "";
-  background: #FFF;
+  cursor: pointer;
+  user-select: none;
 }
 
-input[type="checkbox"]:after {
-  position: relative;
-  display: block;
-  left: 2px;
-  top: -11px;
-  width: 7px;
-  height: 7px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #B3B3B3 #dcddde #dcddde #B3B3B3;
-  content: "";
-  background-image: linear-gradient(135deg, #B1B6BE 0%, #FFF 100%);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-input[type="checkbox"]:checked:after {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAB2SURBVHjaAGkAlv8A3QDyAP0A/QD+Dam3W+kCAAD8APYAAgTVZaZCGwwA5wr0AvcA+Dh+7UX/x24AqK3Wg/8nt6w4/5q71wAAVP9g/7rTXf9n/+9N+AAAtpJa/zf/S//DhP8H/wAA4gzWj2P4lsf0JP0A/wADAHB0Ngka6UmKAAAAAElFTkSuQmCC'), linear-gradient(135deg, #B1B6BE 0%, #FFF 100%);
-}
-
-input[type="checkbox"]:disabled:after {
-  -webkit-filter: opacity(0.4);
-}
-
-input[type="checkbox"]:not(:disabled):checked:hover:after {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAB2SURBVHjaAGkAlv8A3QDyAP0A/QD+Dam3W+kCAAD8APYAAgTVZaZCGwwA5wr0AvcA+Dh+7UX/x24AqK3Wg/8nt6w4/5q71wAAVP9g/7rTXf9n/+9N+AAAtpJa/zf/S//DhP8H/wAA4gzWj2P4lsf0JP0A/wADAHB0Ngka6UmKAAAAAElFTkSuQmCC'), linear-gradient(135deg, #8BB0C2 0%, #FFF 100%);
-}
-
-input[type="checkbox"]:not(:disabled):hover:after {
-  background-image: linear-gradient(135deg, #8BB0C2 0%, #FFF 100%);
-  border-color: #85A9BB #92C2DA #92C2DA #85A9BB;
-}
-
-input[type="checkbox"]:not(:disabled):hover:before {
-  border-color: #3D7591;
-}
-
-/* Large checkboxes */
-input.large[type="checkbox"] {
-  height: 22px;
-  width: 22px;
-}
-
-input.large[type="checkbox"]:before {
+.checkboxcontainer .checkmark {
+  display: inline-block;
   width: 20px;
   height: 20px;
+  background: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid black;
 }
 
-input.large[type="checkbox"]:after {
-  top: -20px;
-  width: 16px;
-  height: 16px;
+.checkboxcontainer input:checked + .checkmark {
+  background-color: #0081bc;
+  border: 1px solid #0081bc;
 }
 
-/* Custom checkbox */
-input.large.custom[type="checkbox"]:checked:after {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGHRFWHRBdXRob3IAbWluZWNyYWZ0aW5mby5jb23fZidLAAAAk0lEQVQ4y2P4//8/AyUYwcAD+OzN/oMwshjRBoA0Gr8+DcbIhhBlAEyz+qZZ/7WPryHNAGTNMOxpJvo/w0/uP0kGgGwGaZbrKgfTGnLc/0nyAgiDbEY2BCRGdCDCnA2yGeYVog0Aae5MV4c7Gzk6CRqAbDM2w/EaQEgzXgPQnU2SAcTYjNMAYm3GaQCxNuM0gFwMAPUKd8XyBVDcAAAAAElFTkSuQmCC'), linear-gradient(135deg, #B1B6BE 0%, #FFF 100%);
+.checkboxcontainer input:indeterminate + .checkmark {
+  background-color: #0081bc;
+  border: 1px solid #0081bc;
 }
 
-input.large.custom[type="checkbox"]:not(:disabled):checked:hover:after {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGHRFWHRBdXRob3IAbWluZWNyYWZ0aW5mby5jb23fZidLAAAAk0lEQVQ4y2P4//8/AyUYwcAD+OzN/oMwshjRBoA0Gr8+DcbIhhBlAEyz+qZZ/7WPryHNAGTNMOxpJvo/w0/uP0kGgGwGaZbrKgfTGnLc/0nyAgiDbEY2BCRGdCDCnA2yGeYVog0Aae5MV4c7Gzk6CRqAbDM2w/EaQEgzXgPQnU2SAcTYjNMAYm3GaQCxNuM0gFwMAPUKd8XyBVDcAAAAAElFTkSuQmCC'), linear-gradient(135deg, #8BB0C2 0%, #FFF 100%);
+.checkboxcontainer input:checked + .checkmark:after {
+  content: "";
+  position: absolute;
+  height: 6px;
+  width: 11px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.checkboxcontainer input:checked:disabled + .checkmark {
+    border: 1px solid grey;
+    background-color: grey;
+}
+
+.checkboxcontainer input:disabled + .checkmark {
+    border: 1px solid grey;
+}
+
+.checkboxcontainer input:indeterminate + .checkmark:after {
+  content: "";
+  position: absolute;
+  height: 0px;
+  width: 11px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 /* Radio Input */

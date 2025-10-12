@@ -3520,6 +3520,7 @@ button.small,
 .checkboxcontainer {
   display: inline-block;
   padding-left: 30px;
+  padding-top: 5px;
   position: relative;
   cursor: pointer;
   user-select: none;

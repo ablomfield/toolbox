@@ -29,11 +29,13 @@ $postdata = array(
   'phoneNumbers' => $numarr,
   'action' => $action
 );
+$postjson = json_encode($postdata);
 
 $acturl = "https://webexapis.com/v1/telephony/config/locations/$locationid/numbers?orgId=$orgid";
 //$postact = curl_init($acturl);
 //curl_setopt($postact, CURLOPT_CUSTOMREQUEST, "POST");
 //curl_setopt($postact, CURLOPT_RETURNTRANSFER, true);
+//curl_setopt($postact, CURLOPT_POSTFIELDS, $postjson);
 //curl_setopt(
 //  $postact,
 //  CURLOPT_HTTPHEADER,
@@ -58,7 +60,8 @@ if ($_SESSION['enabledebug']) {
   echo ("URL: $acturl\n");
   echo ("Data:\n");
   print_r($postdata);
-  echo ("\n");
+  echo ("\n");  
+  echo ("JSON:\n$postjson\n");
   echo ("Auth Token: $authtoken\n");
   //echo ("Error Code: " . curl_getinfo($getlocation, CURLINFO_HTTP_CODE) . "\n");
   //echo ("Trunks Response:\n");

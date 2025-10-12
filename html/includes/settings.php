@@ -16,6 +16,7 @@ if ($dbconn->connect_error) {
 $rssettings = mysqli_query($dbconn, "SELECT * FROM settings") or die("Error in Selecting " . mysqli_error($dbconn));
 $rowsettings = mysqli_fetch_assoc($rssettings);
 $sitetitle = $rowsettings["sitetitle"];
+$oauthurl = $rowsettings["oauth_url"];
 
 if (isset($_SESSION["personid"])) {
 	$personid = $_SESSION["personid"];

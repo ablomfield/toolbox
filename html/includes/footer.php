@@ -2,7 +2,7 @@
 					<!-- Copyright -->
 						<div class="copyright">
 							<ul class="menu">
-								<li>Copyright © <?php echo (date('Y')); ?> <a href="mailto:ablomfield@presidio.com">Adam Blomfield</a>. All rights reserved.</li>
+								<li>Copyright <a href="/session"  style="text-decoration:none;">©</a> <?php echo (date('Y')); ?> <a href="mailto:ablomfield@presidio.com">Adam Blomfield</a>. All rights reserved.</li>
 							</ul>
 						</div>
 				</div>

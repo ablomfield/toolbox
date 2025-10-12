@@ -1,75 +1,34 @@
 <?php
-if (isset($_REQUEST["orgid"])) {
-  $orgid = $_REQUEST["orgid"];
-  $_SESSION["orgid"] = $orgid;
-} elseif (isset($_SESSION["orgid"])) {
-  $orgid = $_SESSION["orgid"];
+if (isset($_REQUEST["locationid"])) {
+  $locationid = $_REQUEST["locationid"];
+  $_SESSION["locationid"] = $locationid;
+} elseif (isset($_SESSION["locationid"])) {
+  $locationid = $_SESSION["locationid"];
 } else {
   die("Sorry, an error has occured.");
 }
+$orgid = $_SESSION["orgid"];
 
-// Retrieve Locations
-$locationsurl = "https://webexapis.com/v1/locations?orgId=$orgid";
-$getlocations = curl_init($locationsurl);
-curl_setopt($getlocations, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($getlocations, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($getlocations, CURLOPT_FAILONERROR, true);
-curl_setopt(
-  $getlocations,
-  CURLOPT_HTTPHEADER,
-  array(
-    'Content-Type: application/json',
-    'Authorization: Bearer ' . $authtoken
-  )
-);
-$locationsdata = curl_exec($getlocations);
-if (curl_errno($getlocations) == "0") {
-  $locationsjson = json_decode($locationsdata);
-  $locationsarray = json_decode($locationsdata, true);
-  $locationcount = count($locationsarray['items']);
-  echo ("					  <p>Found " . $locationcount . " location(s) for $orgname.</p>\n");
-  if ($locationcount > 0) {
-    echo ("					  <p>Select location to modify numbers:</p>\n");
-    echo ("					  <form method=\"post\">\n");
-    echo ("					    <input type=\"hidden\" name=\"toolstep\" value=\"2\">\n");
-    echo ("					    <table class=\"default\">\n");
-    for ($x = 0; $x < $locationcount; $x++) {
-        echo ("					      <tr>\n");
-        echo ("					        <td>\n");
-        echo ("     					    <label class=\"radio-container\">\n");
-        echo ("			     		        <input type=\"radio\" name=\"locationid\" value=\"" . $locationsjson->items[$x]->id . "\">\n");
-        echo ("					            <span class=\"radio-checkmark\"></span>\n");
-        echo ("					        </td>\n");
-        echo ("					        <td>\n");
-        echo ("					         " . $locationsjson->items[$x]->name . "</label>\n");
-        echo ("					        </td>\n");
-        echo ("					      </tr>\n");
-    }
-    echo ("					      <tr>\n");
-    echo ("					        <td colspan=\"2\">\n");
-    echo ("					          <input type=\"submit\" value=\"Continue\" class=\"button\"><br/>\n");
-    echo ("					        </td>\n");
-    echo ("					      </tr>\n");
-    echo ("					    </table>\n");
-    echo ("					  </form>\n");
-  }
+if (isset($_REQUEST["numbers"])) {
+  $numbers = $_REQUEST["numbers"];
 } else {
-  echo "					  <p>Sorry, no trunks found.</p>\n";
+  $numbers = "";
 }
-echo ("           <table class=\"default\">\n");
-echo ("             <tr>\n");
-echo ("					      <form method=\"post\">\n");
-echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
-echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
-echo ("					      </form>\n");
-echo ("             </tr>\n");
-echo ("           </table>\n");
+
+echo ("<form action=\"post\">\n");
+echo (" <input type=\"hidden\" name=\"toolstep\" value=\"2\">\n");
+echo (" <input type=\"hidden\" name=\"action\" value=\"unforward\">\n");
+echo (" <textarea name=\"emails\" rows=\"10\">$emails</textarea>\n");
+echo (" <br />\n");
+echo (" <input type=\"submit\" value=\"Remove Fowarding\">\n");
+echo ("</form>\n");
+
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
-  echo ("URL: $locationsurl\n");
+  echo ("URL: $locationurl\n");
   echo ("Auth Token: $authtoken\n");
-  echo ("Error Code: " . curl_getinfo($getlocations, CURLINFO_HTTP_CODE) . "\n");
-  echo ("Locations Response:\n");
-  print_r($locationsdata);
+  echo ("Error Code: " . curl_getinfo($getlocation, CURLINFO_HTTP_CODE) . "\n");
+  echo ("Trunks Response:\n");
+  print_r($locationdata);
   echo ("  </textarea><br>\n");
 }

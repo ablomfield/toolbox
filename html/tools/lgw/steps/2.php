@@ -86,3 +86,12 @@ echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" cla
 echo ("					      </form>\n");
 echo ("             </tr>\n");
 echo ("           </table>\n");
+if ($_SESSION['enabledebug']) {
+  echo ("  <textarea style=\"width:800px; height:300px;\">\n");
+  echo ("URL: $trunksurl\n");
+  echo ("Auth Token: $authtoken\n");
+  echo ("Error Code: " . curl_getinfo($gettrunks, CURLINFO_HTTP_CODE) . "\n");
+  echo ("Trunks Response:\n");
+  print_r($trunksdata);
+  echo ("  </textarea><br>\n");
+}

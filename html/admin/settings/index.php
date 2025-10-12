@@ -23,15 +23,7 @@ if (isset($_REQUEST['action'])) {
 	$action = '';
 }
 
-if (isset($_REQUEST['pkid'])) {
-	$pkid = $_REQUEST['pkid'];
-} elseif (isset($_GET['pkid'])) {
-	$pkid = $_GET['pkid'];
-} else {
-	$pkid = '';
-}
-
-if (isset($_REQUEST['lockdomain'])) {
+if (isset($_REQUEST['lockdomains'])) {
 	$setlockdomains = 1;
 } else {
 	$setlockdomains = 0;
@@ -45,7 +37,7 @@ if (isset($_REQUEST['selfregistration'])) {
 
 
 // User Actions
-if ($action == "update" && $pkid <> "") {
+if ($action == "update") {
 	$dbconn->query("UPDATE settings SET `sitetitle` = '" . $_REQUEST['sitetitle'] . "', `lockdomains` = $setlockdomains, `selfregistration` = $setselfregistration");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated settings')");
 }

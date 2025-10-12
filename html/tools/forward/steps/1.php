@@ -16,7 +16,7 @@ echo (" <br />\n");
 echo (" <input type=\"submit\" value=\"Remove Fowarding\">\n");
 echo ("</form>\n");
 
-if ($_SESSION['enabledebug']) {
+if ($enabledebug) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   echo ("URL: $locationurl\n");
   echo ("Auth Token: $authtoken\n");

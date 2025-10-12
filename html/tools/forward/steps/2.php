@@ -68,7 +68,7 @@ echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" cla
 echo ("					      </form>\n");
 echo ("             </tr>\n");
 echo ("           </table>\n");
-if ($_SESSION['enabledebug']) {
+if ($enabledebug) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   //echo ("URL: $acturl\n");
   //echo ("Data:\n");

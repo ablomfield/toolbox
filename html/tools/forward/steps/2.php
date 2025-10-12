@@ -29,8 +29,8 @@ $orgid = $_SESSION["orgid"];
 $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
 for ($x = 0; $x < $usercount; $x++) {
-  echo ("Checking $emailarr[0].\n");
-  $personurl = "https://webexapis.com/v1/people?email=" . $useremail . "&callingData=true";
+  echo ("Checking $emailarr[$x].\n");
+  $personurl = "https://webexapis.com/v1/people?email=" . $emailarr[$x] . "&callingData=true";
   $getperson = curl_init($personurl);
   curl_setopt($getperson, CURLOPT_CUSTOMREQUEST, "GET");
   curl_setopt($getperson, CURLOPT_RETURNTRANSFER, true);

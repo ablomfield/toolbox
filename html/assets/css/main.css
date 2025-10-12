@@ -3529,12 +3529,11 @@ button.small,
 }
 
 /* Hide the browser's default radio button */
-/* .radio-container input {
+ .radio-container input {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
 }
-*/
 
 /* Create a custom radio button */
 .radio-checkmark {

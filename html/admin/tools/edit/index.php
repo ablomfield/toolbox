@@ -31,25 +31,17 @@ if (isset($_REQUEST['pkid'])) {
 	$pkid = '';
 }
 
-if (isset($_REQUEST['makeadmin'])) {
-	$makeadmin = $_REQUEST['makeadmin'];
-} elseif (isset($_GET['makeadmin'])) {
-	$makeadmin = $_GET['makeadmin'];
-} else {
-	$makeadmin = '0';
-}
-
 // User Actions
 if ($action == "update" && $pkid <> "") {
-	$dbconn->query("UPDATE users SET isadmin = '" . $makeadmin . "' WHERE pkid = '" . $pkid . "'");
-	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated user " . $_REQUEST['email'] . "')");
-	header("Location: /admin/users/");
+	$dbconn->query("UPDATE tools SET name = '" . $_REQUEST['name'] . "' WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated tools " . $_REQUEST['name'] . "')");
+	header("Location: /admin/tools/");
 }
 
 if ($action == "delete" && $pkid <> "") {
-	$dbconn->query("DELETE FROM users WHERE pkid = '" . $pkid . "'");
-	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted user " . $_REQUEST['email'] . "')");
-	header("Location: /admin/users/");
+	$dbconn->query("DELETE FROM tools WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted tool " . $_REQUEST['name'] . "')");
+	header("Location: /admin/tools/");
 }
 ?>
 <!DOCTYPE HTML>
@@ -75,39 +67,40 @@ if ($action == "delete" && $pkid <> "") {
 					<section class="col-12">
 						<form method="post">
 							<?php
-							$rsuser = mysqli_query($dbconn, "SELECT * FROM users WHERE pkid = '" . $pkid . "'");
+							$rsuser = mysqli_query($dbconn, "SELECT * FROM tools WHERE pkid = '" . $pkid . "'");
 							$rowuser = mysqli_fetch_assoc($rsuser);
-							$useremail   = $rowuser["email"];
+							$name   = $rowuser["name"];
+							$isactive   = $rowuser["isactive"];
 							$userisadmin = $rowuser["isadmin"];
 							?>
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
 							<table>
 								<tr>
-									<td>Email Address</td>
-									<td><input type="text" name="email" size="50" value="<?php echo ($useremail); ?>" disabled>
+									<td>Name</td>
+									<td><input type="text" name="name" size="50" value="<?php echo ($name); ?>" disabled>
 								</tr>
 								<tr>
-									<td>Administrator</td>
+									<td>Active</td>
 									<td>
 										<label class="checkboxcontainer">
-											<input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) {
+											<input type="checkbox" name="isactive" value="1"<?php if ($isactive) {
 																									echo (" checked");
 																								} ?>>
 											<span class="checkmark"></span>
 										</label>
-										<input type="checkbox" name="makeadmin" value="1">
+										<input type="checkbox" name="isactive" value="1">
 									</td>
 								</tr>
 								<tr>
-									<td><input type="submit" value="Update User" class="small">
+									<td><input type="submit" value="Update Tool" class="small"></td>
 						</form>
 						<td>
-							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($useremail); ?>?');">
+							<form method="post" onsubmit="return confirm('Are you sure you want to delete <?php echo ($name); ?>?');">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
-								<input type="hidden" name="email" value="<?php echo ($useremail); ?>">
-								<input type="submit" value="Delete User" class="small">
+								<input type="hidden" name="name" value="<?php echo ($name); ?>">
+								<input type="submit" value="Delete Tool" class="small">
 							</form>
 						</td>
 						</tr>

@@ -91,6 +91,27 @@ if (isset($_GET['code'])) {
         $isadmin = $rowusercheck["isadmin"];
         $userpkid = $rowusercheck["pkid"];
         $timezone = $rowusercheck["timezone"];
+        $orgid = $rowusercheck["lastorg"];
+        if ($orgid != NULL) {
+            // Retrieve Org Details using authtoken
+            $orgurl = "https://webexapis.com/v1/organizations/" . $orgid;
+            $getorg = curl_init($orgurl);
+            curl_setopt($getorg, CURLOPT_CUSTOMREQUEST, "GET");
+            curl_setopt($getorg, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt(
+                $getorg,
+                CURLOPT_HTTPHEADER,
+                array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer ' . $authtoken
+                )
+            );
+            $orgdata = curl_exec($getorg);
+            $orgjson = json_decode($orgdata);
+            $orgname = $orgjson->displayName;
+            $_SESSION["orgid"] = $orgid;
+            $_SESSION["orgname"] = $orgname;
+        }
         $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
         mysqli_query($dbconn, $updatesql);
         $_SESSION["userpkid"] = $userpkid;

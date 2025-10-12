@@ -209,6 +209,17 @@ a:hover {
 	border-bottom-color: transparent;
 }
 
+a.nodec {
+	text-decoration: none;
+	border-bottom: none;
+	transition: none;
+}
+
+a.nodec:hover {
+	color: none;
+}
+
+
 strong,
 b {
 	font-weight: 600;

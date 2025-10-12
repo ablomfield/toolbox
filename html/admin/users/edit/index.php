@@ -95,19 +95,17 @@ if ($action == "delete" && $pkid <> "") {
 								</tr>
 								<tr>
 									<td>Administrator</td>
-									<td><input type="checkbox" name="makeadmin" value="1" <?php if ($userisadmin) {
-																									echo (" checked");
-																								} ?>>
+									<td><input type="checkbox" name="makeadmin" value="1" <?php if ($userisadmin) { echo (" checked"); } ?>></td>
 								</tr>
 								<tr>
-									<td><input type="submit" value="Update User" class="smallbutton">
+									<td><input type="submit" value="Update User" class="small">
 						</form>
 						<td>
 							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($email); ?>?');">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
 								<input type="hidden" name="email" value="<?php echo ($email); ?>">
-								<input type="submit" value="Delete User" class="smallbutton">
+								<input type="submit" value="Delete User" class="small">
 							</form>
 						</td>
 						</tr>

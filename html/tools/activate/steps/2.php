@@ -27,6 +27,14 @@ $locationdata = curl_exec($getlocation);
 $locationjson = json_decode($locationdata);
 if ($locationjson->pstnConnectionType != "LOCAL_GATEWAY") {
   echo ("					  <p><font color=\"red\">Warning! Invalid PSTN connection type. Cannot activate or deactivate numbers!</font></p>\n");
+  echo ("           <table class=\"default\">\n");
+  echo ("             <tr>\n");
+  echo ("					      <form method=\"post\">\n");
+  echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($lgwstep - 1) . "\">\n");
+  echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
+  echo ("					      </form>\n");
+  echo ("             </tr>\n");
+  echo ("           </table>\n");
 } else {
   echo ("					  <p>Please enter the following information to build the configuration file...</p>\n");
   echo ("					  <form method=\"post\"\">\n");

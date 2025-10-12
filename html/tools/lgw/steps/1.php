@@ -27,8 +27,6 @@ $orgjson = json_decode($orgdata);
 $orgname = $orgjson->displayName;
 $_SESSION["orgname"] = $orgname ;
 
-$dbconn->query("UPDATE lgwhistory SET lgwstep = 2, orgid = '$orgid', orgname = '$orgname' WHERE pkid = '" . $_SESSION["historyid"] . "'");
-
 // Retrieve Trunk List
 $trunksurl = "https://webexapis.com/v1/telephony/config/premisePstn/trunks?orgId=$orgid";
 $gettrunks = curl_init($trunksurl);

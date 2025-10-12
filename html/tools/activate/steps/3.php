@@ -51,7 +51,7 @@ $actarray = json_decode($actdata, true);
 
 if (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
   echo ("<p><font color=\"green\">Success! Numbers " . $action . "D.</font></p>\n");
-} elseif (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "400") {
+} elseif (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "400" || curl_getinfo($putact, CURLINFO_HTTP_CODE) == "404") {
   $errorcount = count($actarray['errors']);
   echo ("<p><font color=\"red\">Error! Unable to perform request.</font></p>\n");
   for ($x = 0; $x < $errorcount; $x++) {

@@ -40,38 +40,34 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 								</tr>
 							</thead>
 							<tbody>
-<?php
-$rsdata = mysqli_query($dbconn, "SELECT eventdate, eventsource, eventdesc FROM history ORDER BY eventdate DESC") or die("Error in Selecting " .
- mysqli_error($dbconn));
-if($rsdata){
-    if(mysqli_num_rows($rsdata) > 0){
-        while($row = mysqli_fetch_assoc($rsdata)){
-            echo "										<tr>\n";
-            if ($row["eventdate"] != null) {
-                $eventdate = new DateTime($row["eventdate"], new DateTimeZone('America/New_York'));
-                $eventdate->setTimezone(new DateTimeZone($timezone));
-                $eventdate = $eventdate->format('Y-m-d H:i:s');
-              } else {
-                $eventdate = "-";
-            }
-            echo "											<td style=\"text-align: left;\">" . $eventdate . "</td>\n";
-            echo "											<td style=\"text-align: left;\">" . $row["eventsource"] . "</td>\n";
-            echo "											<td style=\"text-align: left;\">" . $row["eventdesc"] . "</td>\n";
-            echo "										</tr>\n";
-        }
-    }
-}
-?>							</tbody>
+								<?php
+								$rsdata = mysqli_query($dbconn, "SELECT eventdate, eventsource, eventdesc FROM history ORDER BY eventdate DESC") or die("Error in Selecting " .
+									mysqli_error($dbconn));
+								if ($rsdata) {
+									if (mysqli_num_rows($rsdata) > 0) {
+										while ($row = mysqli_fetch_assoc($rsdata)) {
+											echo "										<tr>\n";
+											if ($row["eventdate"] != null) {
+												$eventdate = new DateTime($row["eventdate"], new DateTimeZone('America/New_York'));
+												$eventdate->setTimezone(new DateTimeZone($timezone));
+												$eventdate = $eventdate->format('Y-m-d H:i:s');
+											} else {
+												$eventdate = "-";
+											}
+											echo "											<td style=\"text-align: left;\">" . $eventdate . "</td>\n";
+											echo "											<td style=\"text-align: left;\">" . $row["eventsource"] . "</td>\n";
+											echo "											<td style=\"text-align: left;\">" . $row["eventdesc"] . "</td>\n";
+											echo "										</tr>\n";
+										}
+									}
+								}
+								?> </tbody>
 						</table>
 					</section>
 				</div>
 			</div>
 		</section>
-		<?php
-		echo "<h3> PHP List All Session Variables</h3>";
-		foreach ($_SESSION as $key => $val)
-			echo $key . ": " . $val . "<br/>";
-		?> <!-- Footer -->
+		<!-- Footer -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 	</div>
 	<!-- Scripts -->

@@ -11,7 +11,11 @@ if (isset($_SESSION['authtoken'])) {
 	$loggedin = True;
 	$displayname = $_SESSION["displayname"];
 	$authtoken = $_SESSION["authtoken"];
-	$orgname = $_SESSION["orgname"];
+	if (isset($_SESSION['orgname'])) {
+		$orgname = $_SESSION["orgname"];
+	} else {
+		header('Location: /customers/');
+	}
 	$isadmin = $_SESSION["isadmin"];
 } else {
 	$loggedin = False;
@@ -34,13 +38,13 @@ if (isset($_SESSION['authtoken'])) {
 		<!-- Header -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"); ?>
 		<!-- Main Content -->
-<?php
-if ($loggedin) {
-	include($_SERVER['DOCUMENT_ROOT'] . "/includes/icons.php");
-} else {
-	include($_SERVER['DOCUMENT_ROOT'] . "/includes/login.php");
-}
-?>		<!-- Footer -->
+		<?php
+		if ($loggedin) {
+			include($_SERVER['DOCUMENT_ROOT'] . "/includes/icons.php");
+		} else {
+			include($_SERVER['DOCUMENT_ROOT'] . "/includes/login.php");
+		}
+		?> <!-- Footer -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 	</div>
 	<!-- Scripts -->

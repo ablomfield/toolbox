@@ -67,7 +67,7 @@ if ($action == "update" && $pkid <> "") {
 					<section class="col-12">
 						<form method="post">
 							<?php
-							$rstool = mysqli_query($dbconn, "SELECT * FROM settings'");
+							$rstool = mysqli_query($dbconn, "SELECT * FROM settings");
 							$row = mysqli_fetch_assoc($rstool);
 							$sitetitle   = $row["sitetitle"];
 							$client_id   = $row["client_id"];

@@ -109,14 +109,10 @@ if (isset($_GET['code'])) {
         header("Location: /");
     } else {
         $rowusercheck = mysqli_fetch_assoc($rsusercheck);
-        $isdevadmin = $rowusercheck["isdevadmin"];
-        $issysadmin = $rowusercheck["issysadmin"];
-        $ismigadmin = $rowusercheck["ismigadmin"];
+        $isadmin = $rowusercheck["isadmin"];
         $userpkid = $rowusercheck["pkid"];
         $timezone = $rowusercheck["timezone"];
-        $_SESSION["isdevadmin"] = $isdevadmin;
-        $_SESSION["issysadmin"] = $issysadmin;
-        $_SESSION["ismigadmin"] = $ismigadmin;
+        $_SESSION["isadmin"] = $isadmin;
         $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', orgid = '" . $orgid . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
         mysqli_query($dbconn, $updatesql);
         $_SESSION["userpkid"] = $userpkid;

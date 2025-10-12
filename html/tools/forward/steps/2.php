@@ -83,7 +83,7 @@ echo ("             </tr>\n");
 echo ("           </table>\n");
 if ($enabledebug) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
-  echo ("URL: $puturl\n");
+  echo ("URL: $fwdurl\n");
   echo ("\n");
   echo ("JSON:\n$putjson\n");
   echo ("Auth Token: $authtoken\n");

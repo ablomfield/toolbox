@@ -25,8 +25,8 @@ if (isset($_REQUEST['action'])) {
 
 // User Actions
 if ($action == "add") {
-  $dbconn->query("INSERT INTO users (`email`) VALUES('" . $_REQUEST['email'] . "')");
-  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added user " . $_REQUEST['email'] . "')");
+  $dbconn->query("INSERT INTO tools (`fkuser`, `dateadded`, `isactive`, `name`, `icon`, `path`) VALUES('$userpkid', now(), ". $_REQUEST['isactive'] . ", '" . $_REQUEST['name'] . "', '" . $_REQUEST['icon'] . "', '" . $_REQUEST['path'] . "')");
+  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added tool " . $_REQUEST['name'] . "')");
   header("Location: /admin/users/");
 }
 ?>
@@ -56,10 +56,18 @@ if ($action == "add") {
 							<table>
 								<tr>
 									<td>Email Address</td>
-									<td><input type="text" name="email" size="50" value="">
+									<td><input type="text" name="name" size="50" value="">
 								</tr>
 								<tr>
-									<td><input type="submit" value="Add User" class="small">
+									<td>Icon</td>
+									<td><input type="text" name="icon" size="50" value="">
+								</tr>
+								<tr>
+									<td>Path</td>
+									<td><input type="text" name="path" size="50" value="">
+								</tr>								
+								<tr>
+									<td><input type="submit" value="Add Tool" class="small">
 						</form>
 						<td></td>
 						</tr>

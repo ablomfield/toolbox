@@ -3513,10 +3513,10 @@ button.small,
 }
 
 /* Checkboxes */
-input[type=checkbox]{
-  width: 15px;
-  height: 15px;
-  background: #0081bc;
+input[type=checkbox] {
+	border: 2px #0081bc;
+	display: block;
+	background: #ffffff;
 }
 
 /* Radio Input */
@@ -3536,7 +3536,7 @@ input[type=checkbox]{
 }
 
 /* Hide the browser's default radio button */
- .radio-container input {
+.radio-container input {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
@@ -3554,12 +3554,12 @@ input[type=checkbox]{
 }
 
 /* On mouse-over, add a background color */
-.radio-container:hover input ~ .radio-checkmark {
+.radio-container:hover input~.radio-checkmark {
 	background-color: #4c4c4c;
 }
 
 /* When the radio button is checked, add a background */
-.radio-container input:checked ~ .radio-checkmark {
+.radio-container input:checked~.radio-checkmark {
 	background-color: #0081bc;
 }
 
@@ -3571,7 +3571,7 @@ input[type=checkbox]{
 }
 
 /* Show the indicator (dot/circle) when checked */
-.radio-container input:checked ~ .radio-checkmark:after {
+.radio-container input:checked~.radio-checkmark:after {
 	display: block;
 }
 

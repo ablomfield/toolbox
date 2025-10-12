@@ -16,8 +16,8 @@ if (isset($_REQUEST["action"])) {
 
 if (isset($_REQUEST["numbers"])) {
   $numbers = $_REQUEST["numbers"];
-  $numbers = str_replace("\r", "", $numbers);
-  $numarr = explode("\n", $numbers);
+  $numbersformatted = str_replace("\r", "", $numbers);
+  $numarr = explode("\n", $numbersformatted);
 } else {
   die("Sorry, an error has occured.");
 }
@@ -64,6 +64,8 @@ echo ("           <table class=\"default\">\n");
 echo ("             <tr>\n");
 echo ("					      <form method=\"post\">\n");
 echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
+echo ("					      <input type=\"hidden\" name=\"action\" value=\"$action\">\n");
+echo ("					      <input type=\"hidden\" name=\"numbers\" value=\"$numbers\">\n");
 echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
 echo ("					      </form>\n");
 echo ("             </tr>\n");

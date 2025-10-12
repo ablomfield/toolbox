@@ -9,6 +9,18 @@ if (isset($_REQUEST["locationid"])) {
 }
 $orgid = $_SESSION["orgid"];
 
+if (isset($_REQUEST["action"])) {
+  $action = $_REQUEST["action"];
+} else {
+  $action = "";
+}
+
+if (isset($_REQUEST["numbers"])) {
+  $numbers = $_REQUEST["numbers"];
+} else {
+  $numbers = "";
+}
+
 echo ("<br/>\n");
 // Retrieve Location PSTN Information
 $locationurl = "https://webexapis.com/v1/telephony/pstn/locations/$locationid/connection?orgId=$orgid";
@@ -45,18 +57,26 @@ if (curl_getinfo($getlocation, CURLINFO_HTTP_CODE) == "200") {
     echo ("					      <th align=\"right\" colspan=\"2\">Action:</th>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"ACTIVATE\"><span class=\"radio-checkmark\"></span></td>\n");
+    echo ("					      <td><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"ACTIVATE\"");
+    if ($action == "ACTIVATE") {
+      echo (" SELECTED");
+    }
+    echo ("><span class=\"radio-checkmark\"></span></td>\n");
     echo ("					      <td>Activate</label></td>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <td align=\"right\"><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"DEACTIVATE\"><span class=\"radio-checkmark\"></span></td>\n");
+    echo ("					      <td align=\"right\"><label class=\"radio-container\"><input type=\"radio\" name=\"action\" value=\"DEACTIVATE\"");
+    if ($action == "DEACTIVATE") {
+      echo (" SELECTED");
+    }
+    echo ("><span class=\"radio-checkmark\"></span></td>\n");
     echo ("					      <td align=\"left\">Deactivate</label></td>\n");
     echo ("					    </tr>\n");    
     echo ("					    <tr>\n");
     echo ("					      <th colspan =\"2\" align=\"right\">Numbers:</th>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
-    echo ("					      <th colspan =\"2\" align=\"right\"><textarea name=\"numbers\" rows=\"10\"></textarea></th>\n");
+    echo ("					      <th colspan =\"2\" align=\"right\"><textarea name=\"numbers\" rows=\"10\">$numbers</textarea></th>\n");
     echo ("					    </tr>\n");
     echo ("					    <tr>\n");
     echo ("					      <td colspan=\"2\"align=\"left\"><input type=\"submit\" value=\"Continue\"></td>\n");

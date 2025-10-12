@@ -10,12 +10,12 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
 // Get LGW Step
-if (isset($_REQUEST['lgwstep'])) {
-	$lgwstep = $_REQUEST['lgwstep'];
-} elseif (isset($_SESSION['lgwstep'])) {
-	$lgwstep = $_SESSION['lgwstep'];
+if (isset($_REQUEST['toolstep'])) {
+	$toolstep = $_REQUEST['toolstep'];
+} elseif (isset($_SESSION['toolstep'])) {
+	$toolstep = $_SESSION['toolstep'];
 } else {
-	$lgwstep = 0;
+	$toolstep = 0;
 }
 
 ?>
@@ -58,15 +58,15 @@ if (isset($_REQUEST['lgwstep'])) {
 					<!-- Content -->
 					<article>
 						<?php
-						if ($lgwstep == 0) {
+						if ($toolstep == 0) {
 							include("steps/0.php");
-						} elseif ($lgwstep == 1) {
+						} elseif ($toolstep == 1) {
 							include("steps/1.php");
-						} elseif ($lgwstep == 2) {
+						} elseif ($toolstep == 2) {
 							include("steps/2.php");
-						} elseif ($lgwstep == 3) {
+						} elseif ($toolstep == 3) {
 							include("steps/3.php");
-						} elseif ($lgwstep == 4) {
+						} elseif ($toolstep == 4) {
 							include("steps/4.php");
 						}
 						?>

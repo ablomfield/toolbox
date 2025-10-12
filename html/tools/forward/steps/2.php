@@ -30,6 +30,19 @@ $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
 for ($x = 0; $x < $usercount; $x++) {
   echo ("Checking $emailarr[0].\n");
+  $personurl = "https://webexapis.com/v1/people?email=" . $useremail . "&callingData=true";
+  $getperson = curl_init($personurl);
+  curl_setopt($getperson, CURLOPT_CUSTOMREQUEST, "GET");
+  curl_setopt($getperson, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt(
+    $getperson,
+    CURLOPT_HTTPHEADER,
+    array(
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $authtoken
+    )
+  );
+  $personjson = curl_exec($getperson);
 }
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");

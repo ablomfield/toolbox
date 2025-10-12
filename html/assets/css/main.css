@@ -3512,6 +3512,13 @@ button.small,
 
 }
 
+/* Checkboxes */
+input[type=checkbox]{
+  width: 15px;
+  height: 15px;
+  background: #0081bc;
+}
+
 /* Radio Input */
 .radio-container {
 	display: block;

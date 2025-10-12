@@ -28,7 +28,6 @@ $trunksjson = json_decode($trunksdata);
 if ($trunksjson->status == "online") {
   echo ("					  <p><font color=\"red\">Warning! " . $trunksjson->name . " is currently online!</font></p>\n");
 }
-$dbconn->query("UPDATE lgwhistory SET lgwstep = 3, trunkid = '$trunkid', trunkname = '" . $trunksjson->name . "' WHERE pkid = '" . $_SESSION["historyid"] . "'");
 echo ("					  <p>Please enter the following information to build the configuration file...</p>\n");
 echo ("					  <form method=\"post\"\">\n");
 echo ("					  <input type=\"hidden\" name=\"lgwstep\" value=\"4\">\n");

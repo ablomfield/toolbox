@@ -73,7 +73,7 @@ if (curl_errno($gettrunks) == "0") {
   echo ("					    </table>\n");
   echo ("					  </form>\n");
 } else {
-  echo "					  <p>Sorry, you don't have access to any organizations.</p>\n";
+  echo "					  <p>Sorry, no trunks found.</p>\n";
 }
 echo ("           <table class=\"default\">\n");
 echo ("             <tr>\n");

@@ -3,7 +3,7 @@ if (isset($_SESSION['authtoken'])) {
     $loggedin = True;
     $displayname = $_SESSION["displayname"];
     $authtoken = $_SESSION["authtoken"];
-    $userpkid = $_SERVER["userpkid"];
+    $userpkid = $_SESSION["userpkid"];
     if (isset($_SESSION['orgname'])) {
         $orgname = $_SESSION["orgname"];
     } else {

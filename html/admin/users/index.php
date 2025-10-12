@@ -36,52 +36,61 @@ if (isset($_SESSION['authtoken'])) {
 		<!-- Header -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"); ?>
 		<!-- Main Content -->
-		<?php
-		$rsdata = mysqli_query($dbconn, "SELECT * FROM users ORDER BY email") or die("Error in Selecting " .
-			mysqli_error($dbconn));
-		if ($rsdata) {
-			if (mysqli_num_rows($rsdata) > 0) {
-				while ($row = mysqli_fetch_assoc($rsdata)) {
-					echo "      <tr>\n";
-					echo "        <td>" . $row["email"] . "</td>\n";
-					if ($row["lastaccess"] != null) {
-						$lastaccess = new DateTime($row["lastaccess"], new DateTimeZone('GMT'));
-						$lastaccess->setTimezone(new DateTimeZone($timezone));
-						$lastaccess = $lastaccess->format('Y-m-d H:i:s');
-					} else {
-						$lastaccess = "-";
+		<table id="list">
+			<tr>
+				<th>Username</th>
+				<th>Device Admin</th>
+				<th>System Admin</th>
+				<th>Migration Admin</th>
+				<th>Last Access</th>
+				<th></th>
+			</tr>
+			<?php
+			$rsdata = mysqli_query($dbconn, "SELECT * FROM users ORDER BY email") or die("Error in Selecting " .
+				mysqli_error($dbconn));
+			if ($rsdata) {
+				if (mysqli_num_rows($rsdata) > 0) {
+					while ($row = mysqli_fetch_assoc($rsdata)) {
+						echo "      <tr>\n";
+						echo "        <td>" . $row["email"] . "</td>\n";
+						if ($row["lastaccess"] != null) {
+							$lastaccess = new DateTime($row["lastaccess"], new DateTimeZone('GMT'));
+							$lastaccess->setTimezone(new DateTimeZone($timezone));
+							$lastaccess = $lastaccess->format('Y-m-d H:i:s');
+						} else {
+							$lastaccess = "-";
+						}
+						echo "        <td align=\"center\">";
+						if ($row["isdevadmin"]) {
+							echo ("<img src=\"/images/small-check-mark-icon.png\">");
+						} else {
+							echo ("&nbsp;");
+						}
+						echo ("</td>\n");
+						echo "        <td align=\"center\">";
+						if ($row["issysadmin"]) {
+							echo ("<img src=\"/images/small-check-mark-icon.png\">");
+						} else {
+							echo ("&nbsp;");
+						}
+						echo ("</td>\n");
+						echo "        <td align=\"center\">";
+						if ($row["ismigadmin"]) {
+							echo ("<img src=\"/images/small-check-mark-icon.png\">");
+						} else {
+							echo ("&nbsp;");
+						}
+						echo ("</td>\n");
+						echo "        <td>" . $lastaccess . "</td>\n";
+						echo "        <form action=\"edit/\" method=\"post\">\n";
+						echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
+						echo "        <td><input type=\"submit\" value=\"Edit\" class=\"smallbutton\">\n";
+						echo "        </form>\n";
+						echo "      </tr>\n";
 					}
-					echo "        <td align=\"center\">";
-					if ($row["isdevadmin"]) {
-						echo ("<img src=\"/images/small-check-mark-icon.png\">");
-					} else {
-						echo ("&nbsp;");
-					}
-					echo ("</td>\n");
-					echo "        <td align=\"center\">";
-					if ($row["issysadmin"]) {
-						echo ("<img src=\"/images/small-check-mark-icon.png\">");
-					} else {
-						echo ("&nbsp;");
-					}
-					echo ("</td>\n");
-					echo "        <td align=\"center\">";
-					if ($row["ismigadmin"]) {
-						echo ("<img src=\"/images/small-check-mark-icon.png\">");
-					} else {
-						echo ("&nbsp;");
-					}
-					echo ("</td>\n");
-					echo "        <td>" . $lastaccess . "</td>\n";
-					echo "        <form action=\"edit/\" method=\"post\">\n";
-					echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
-					echo "        <td><input type=\"submit\" value=\"Edit\" class=\"smallbutton\">\n";
-					echo "        </form>\n";
-					echo "      </tr>\n";
 				}
 			}
-		}
-		?>
+			?>
 		</table>
 		<p>
 		<form method="post" action="/admin/users/add/">

@@ -37,34 +37,25 @@ if ($isadmin == false) {
 					<section class="col-12">
 						<table class="default">
 							<tr>
-								<th>Username</th>
-								<th>Admin</th>
-								<th>Last Access</th>
+								<th>Tool Name</th>
+								<th>Is Active</th>
 								<th></th>
 							</tr>
 							<?php
-							$rsdata = mysqli_query($dbconn, "SELECT * FROM users ORDER BY email") or die("Error in Selecting " .
+							$rsdata = mysqli_query($dbconn, "SELECT pkid, name, isactive FROM tools ORDER BY name") or die("Error in Selecting " .
 								mysqli_error($dbconn));
 							if ($rsdata) {
 								if (mysqli_num_rows($rsdata) > 0) {
 									while ($row = mysqli_fetch_assoc($rsdata)) {
 										echo "      <tr>\n";
-										echo "        <td>" . $row["email"] . "</td>\n";
-										if ($row["lastaccess"] != null) {
-											$lastaccess = new DateTime($row["lastaccess"], new DateTimeZone('GMT'));
-											$lastaccess->setTimezone(new DateTimeZone($timezone));
-											$lastaccess = $lastaccess->format('Y-m-d H:i:s');
-										} else {
-											$lastaccess = "-";
-										}
+										echo "        <td>" . $row["name"] . "</td>\n";
 										echo "        <td align=\"center\">";
-										if ($row["isadmin"]) {
+										if ($row["isactive"]) {
 											echo ("<img src=\"/images/small-check-mark-icon.png\">");
 										} else {
 											echo ("&nbsp;");
 										}
 										echo ("</td>\n");
-										echo "        <td>" . $lastaccess . "</td>\n";
 										echo "        <form action=\"edit/\" method=\"post\">\n";
 										echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
 										echo "        <td><input type=\"submit\" value=\"Edit\" class=\"small\">\n";
@@ -76,8 +67,8 @@ if ($isadmin == false) {
 							?>
 						</table>
 						<p>
-						<form method="post" action="/admin/users/add/">
-							<input type="submit" value="Add User" class="small">
+						<form method="post" action="add/">
+							<input type="submit" value="Add Tool" class="small">
 						</form>
 						</p>
 						<small>

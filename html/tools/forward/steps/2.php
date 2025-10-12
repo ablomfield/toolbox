@@ -34,7 +34,7 @@ if ($usercount > 0) {
     //echo ("Checking $emailarr[$x].<br />\n");
     $personid = webexgetpersonid($authtoken, $emailarr[$x]);
     if ($personid != NULL) {
-      $fwdurl = "https://webexapis.com/people/$personid/features/callForwarding?orgId=$orgid";
+      $fwdurl = "https://webexapis.com/v1/people/$personid/features/callForwarding?orgId=$orgid";
       $putfwd = curl_init($fwdurl);
       curl_setopt($putfwd, CURLOPT_CUSTOMREQUEST, "PUT");
       curl_setopt($putfwd, CURLOPT_RETURNTRANSFER, true);

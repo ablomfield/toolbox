@@ -26,7 +26,7 @@ for ($x = 0; $x < $usercount; $x++) {
   $personid = webexgetpersonid($authtoken, $emailarr[$x]);
   if ($personid != NULL) {
     $fwdurl = "https://webexapis.com/people/$personid/features/callForwarding?orgId=$orgid";
-    $putfwd = curl_init($acturl);
+    $putfwd = curl_init($fwdurl);
     curl_setopt($putfwd, CURLOPT_CUSTOMREQUEST, "PUT");
     curl_setopt($putfwd, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($putfwd, CURLOPT_POSTFIELDS, $putjson);
@@ -42,7 +42,7 @@ for ($x = 0; $x < $usercount; $x++) {
     $fwdjson = json_decode($fwddata);
     $fwdarray = json_decode($fwddata, true);
 
-    if (curl_getinfo($putact, CURLINFO_HTTP_CODE) == "204") {
+    if (curl_getinfo($putfwd, CURLINFO_HTTP_CODE) == "204") {
       echo ("$emailarr[$x] - Successfully unforwarded.<br />\n");
     } else {
       echo ("$emailarr[$x] - Unforwarded failed.<br />\n");

@@ -31,13 +31,22 @@ $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
 for ($x = 0; $x < $usercount; $x++) {
   echo ("Checking $emailarr[$x].<br />\n");
-  $personid = webexgetpersonid($authtoken,$emailarr[$x]);
+  $personid = webexgetpersonid($authtoken, $emailarr[$x]);
   if ($personid != NULL) {
     echo ("User found. Attempting to unforward.<br />\n");
   } else {
     echo ("User not found!<br />\n");
   }
 }
+echo ("           <table class=\"default\">\n");
+echo ("             <tr>\n");
+echo ("					      <form method=\"post\">\n");
+echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
+echo ("					      <input type=\"hidden\" name=\"emails\" value=\"$emails\">\n");
+echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
+echo ("					      </form>\n");
+echo ("             </tr>\n");
+echo ("           </table>\n");
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   //echo ("URL: $acturl\n");

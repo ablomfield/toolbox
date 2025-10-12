@@ -1,7 +1,7 @@
 		<section class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200"><?php
-											$rsdata = mysqli_query($dbconn, "SELECT pkid, name, isactive FROM tools ORDER BY name") or die("Error in Selecting " . mysqli_error($dbconn));
+											$rsdata = mysqli_query($dbconn, "SELECT name, icon, path FROM tools ORDER BY name") or die("Error in Selecting " . mysqli_error($dbconn));
 											if ($rsdata) {
 												if (mysqli_num_rows($rsdata) > 0) {
 													while ($row = mysqli_fetch_assoc($rsdata)) {

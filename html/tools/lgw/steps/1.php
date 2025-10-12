@@ -25,7 +25,7 @@ curl_setopt(
 $orgdata = curl_exec($getorg);
 $orgjson = json_decode($orgdata);
 $orgname = $orgjson->displayName;
-$_SESSION["orgname"] = $orgname ;
+$_SESSION["orgname"] = $orgname;
 
 // Retrieve Trunk List
 $trunksurl = "https://webexapis.com/v1/telephony/config/premisePstn/trunks?orgId=$orgid";
@@ -83,3 +83,9 @@ echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" cla
 echo ("					      </form>\n");
 echo ("             </tr>\n");
 echo ("           </table>\n");
+if ($_SESSION['enabledebug']) {
+  echo ("  <textarea style=\"width:800px; height:300px;\">\n");
+  echo ("Trunks Response:\n");
+  print_r($trunksdata);
+  echo ("  </textarea><br>\n");
+}

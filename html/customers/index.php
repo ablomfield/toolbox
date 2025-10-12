@@ -49,6 +49,7 @@ if ($action == "setcustomer") {
 	$orgname = $orgjson->displayName;
 	$_SESSION["orgid"] = $orgid;
 	$_SESSION["orgname"] = $orgname;
+	header('Location: /');
 }
 ?>
 <!DOCTYPE HTML>

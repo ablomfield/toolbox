@@ -19,7 +19,7 @@ echo ("<form action=\"post\">\n");
 echo (" <input type=\"hidden\" name=\"toolstep\" value=\"2\">\n");
 echo (" <input type=\"hidden\" name=\"action\" value=\"unforward\">\n");
 echo (" <p>User Emails:</p>\n");
-echo (" <textarea name=\"emails\" rows=\"10\">$emails</textarea>\n");
+echo (" <textarea name=\"emails\" rows=\"10\" cols=\"25\">$emails</textarea>\n");
 echo (" <br />\n");
 echo (" <input type=\"submit\" value=\"Remove Fowarding\">\n");
 echo ("</form>\n");

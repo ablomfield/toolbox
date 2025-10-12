@@ -43,6 +43,7 @@
 						echo ("					    <li><a href=\"/logout\">Logout</a></li>\n");
 						echo ("					  </ul>\n");
 						echo ("					</nav>\n");
+						echo ("<h3>" . $orgname . "<h3>\n");
 					}
 					?>
 				</div>

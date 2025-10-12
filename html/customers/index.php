@@ -16,6 +16,36 @@ if (isset($_SESSION['authtoken'])) {
 } else {
 	$loggedin = False;
 }
+
+// Retrieve Post Paramaters
+if (isset($_POST["action"])) {
+	$action = $_POST["action"];
+} else {
+	$arction = "";
+}
+
+// Set Customer
+if ($action == "setcustomer") {
+	$orgid = $_POST["orgid"];
+	// Retrieve Org Details using authtoken
+	$orgurl = "https://webexapis.com/v1/organizations/" . $orgid;
+	$getorg = curl_init($orgurl);
+	curl_setopt($getorg, CURLOPT_CUSTOMREQUEST, "GET");
+	curl_setopt($getorg, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt(
+		$getorg,
+		CURLOPT_HTTPHEADER,
+		array(
+			'Content-Type: application/json',
+			'Authorization: Bearer ' . $authtoken
+		)
+	);
+	$orgdata = curl_exec($getorg);
+	$orgjson = json_decode($orgdata);
+	$orgname = $orgjson->displayName;
+	$_SESSION["orgid"] = $orgid;
+	$_SESSION["orgname"] = $orgname;
+}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -86,7 +116,6 @@ if (isset($_SESSION['authtoken'])) {
 							} else {
 								echo "					  <p>Sorry, you don't have access to any organizations.</p>\n";
 							}
-							?>
 							?>
 						</div>
 					</section>

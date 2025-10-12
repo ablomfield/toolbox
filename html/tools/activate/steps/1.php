@@ -27,11 +27,11 @@ if (curl_errno($getlocations) == "0") {
   $locationsjson = json_decode($locationsdata);
   $locationsarray = json_decode($locationsdata, true);
   $locationcount = count($locationsarray['items']);
-  echo ("					  <p>Found " . $locationcount . " location(s) for $orgname</p>\n");
+  echo ("					  <p>Found " . $locationcount . " location(s) for $orgname.</p>\n");
   if ($locationcount > 0) {
-    echo ("					  <p>Select trunk to build configuration</p>\n");
+    echo ("					  <p>Select location to modify numbers:</p>\n");
     echo ("					  <form method=\"post\">\n");
-    echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
+    echo ("					    <input type=\"hidden\" name=\"toolstep\" value=\"2\">\n");
     echo ("					    <table class=\"default\">\n");
     for ($x = 0; $x < $locationcount; $x++) {
         echo ("					      <tr>\n");
@@ -59,7 +59,7 @@ if (curl_errno($getlocations) == "0") {
 echo ("           <table class=\"default\">\n");
 echo ("             <tr>\n");
 echo ("					      <form method=\"post\">\n");
-echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($toolstep - 1) . "\">\n");
+echo ("					      <input type=\"hidden\" name=\"toolstep\" value=\"" . ($toolstep - 1) . "\">\n");
 echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
 echo ("					      </form>\n");
 echo ("             </tr>\n");

@@ -31,7 +31,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 			<div class="container">
 				<div class="row">
 					<section class="col-12">
-						<table id="list">
+						<table class="default">
 							<thead>
 								<tr>
 									<th style="text-align: left;">Time</th>

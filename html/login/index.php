@@ -60,6 +60,23 @@ if (isset($_GET['code'])) {
     $orgid = $personjson->orgId;
     $timezone = $personjson->timeZone;
 
+    // Retrieve Org Details using authtoken
+    $orgurl = "https://webexapis.com/v1/organizations/" . $orgid;
+    $getorg = curl_init($orgurl);
+    curl_setopt($getorg, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($getorg, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt(
+        $getorg,
+        CURLOPT_HTTPHEADER,
+        array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $authtoken
+        )
+    );
+    $orgdata = curl_exec($getorg);
+    $orgjson = json_decode($orgdata);
+    $orgname = $orgjson->displayName;
+
     // Check if User Exists in Database
     $rsusercheck = mysqli_query($dbconn, "SELECT * FROM users WHERE email = '" . $email . "'");
     if (mysqli_num_rows($rsusercheck) == 0) {
@@ -85,7 +102,10 @@ if (isset($_GET['code'])) {
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
         $_SESSION["authtoken"] = $authtoken;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        $_SESSION["orgid"] = $orgid;
+        $_SESSION["orgname"] = $orgname;
+
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
         header("Location: /");
     } else {
         $rowusercheck = mysqli_fetch_assoc($rsusercheck);
@@ -105,7 +125,9 @@ if (isset($_GET['code'])) {
         $_SESSION["displayname"] = $displayname;
         $_SESSION["timezone"] = $timezone;
         $_SESSION["authtoken"] = $authtoken;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        $_SESSION["orgid"] = $orgid;
+        $_SESSION["orgname"] = $orgname;
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
         header("Location: /");
     }
 } else {

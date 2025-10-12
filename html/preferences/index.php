@@ -28,10 +28,8 @@ if (isset($_REQUEST['newtimezone'])) {
 
 if (isset($_REQUEST['enabledebug'])) {
   $setenabledebug = 1;
-  $enabledebug = 1;
 } else {
   $setenabledebug = 0;
-  $enabledebug = 0;
 }
 
 // User Actions
@@ -43,6 +41,7 @@ if ($action == "settimezone" && $newtimezone <> "") {
 
 if ($action == "debug") {
   $_SESSION["enabledebug"] = $setenabledebug;
+  $enabledebug = $setenabledebug;
 }
 
 ?>

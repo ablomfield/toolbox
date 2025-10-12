@@ -104,7 +104,7 @@ if (isset($_GET['code'])) {
         $_SESSION["authtoken"] = $authtoken;
         $_SESSION["orgid"] = $orgid;
         $_SESSION["orgname"] = $orgname;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGIN')");
         header("Location: /");
     } else {
         $rowusercheck = mysqli_fetch_assoc($rsusercheck);
@@ -122,7 +122,7 @@ if (isset($_GET['code'])) {
         $_SESSION["orgid"] = $orgid;
         $_SESSION["orgname"] = $orgname;
         $_SESSION["isadmin"] = $isadmin;
-        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGIN')");
         header("Location: /");
     }
 } else {

@@ -20,6 +20,20 @@
 						echo ("					        <li><a href=\"/lgw\">LGW Generator</a></li>\n");
 						echo ("					      </ul>\n");
 						echo ("					    </li>\n");
+						if ($isadmin) {
+							echo ("					    <li");
+							if ($sitesec == "admin") {
+								echo (" class=\"current\"");
+							}
+							echo ("><a href=\"#\">Admin</a>\n");
+							echo ("					      <ul>\n");
+							echo ("					        <li><a href=\"/admin/users/\">Users</a></li>\n");
+							echo ("					        <li><a href=\"/admin/domains/\">History</a></li>\n");
+							echo ("					        <li><a href=\"/admin/history/\">Domains</a></li>\n");
+							echo ("					        <li><a href=\"/admin/settings/\">Settings</a></li>\n");
+							echo ("					      </ul>\n");
+							echo ("					    </li>\n");
+						}
 						echo ("					    <li><a href=\"/logout\">Logout</a></li>\n");
 						echo ("					  </ul>\n");
 						echo ("					</nav>\n");

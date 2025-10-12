@@ -69,7 +69,7 @@ if (isset($_SESSION['authtoken'])) {
 						echo "        <td>" . $lastaccess . "</td>\n";
 						echo "        <form action=\"edit/\" method=\"post\">\n";
 						echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
-						echo "        <td><input type=\"submit\" value=\"Edit\" class=\"smallbutton\">\n";
+						echo "        <td><input type=\"submit\" value=\"Edit\" class=\"small\">\n";
 						echo "        </form>\n";
 						echo "      </tr>\n";
 					}
@@ -79,7 +79,7 @@ if (isset($_SESSION['authtoken'])) {
 		</table>
 		<p>
 		<form method="post" action="/admin/users/add/">
-			<input type="submit" value="Add User" class="smallbutton">
+			<input type="submit" value="Add User" class="small">
 		</form>
 		</p>
 		<small>

@@ -82,7 +82,7 @@ if ($action == "update") {
 								</tr>
 								<tr>
 									<td>Site Title</td>
-									<td><input type="text" name="name" size="50" value="<?php echo ($sitetitle); ?>">
+									<td><input type="text" name="sitetitle" size="50" value="<?php echo ($sitetitle); ?>">
 								</tr>
 								<tr>
 									<td colspan="2"><b>Integration Settings</b></td>

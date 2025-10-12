@@ -31,16 +31,22 @@ if (isset($_REQUEST['pkid'])) {
 	$pkid = '';
 }
 
-if (isset($_REQUEST['isactive'])) {
-	$setisactive = 1;
+if (isset($_REQUEST['lockdomain'])) {
+	$setlockdomains = 1;
 } else {
-	$setisactive = 0;
+	$setlockdomains = 0;
+}
+
+if (isset($_REQUEST['selfregistration'])) {
+	$setselfregistration = 1;
+} else {
+	$setselfregistration = 0;
 }
 
 
 // User Actions
 if ($action == "update" && $pkid <> "") {
-	$dbconn->query("UPDATE settings SET name = '" . $_REQUEST['name'] . "', isactive = " . $setisactive . ", icon = '" . $_REQUEST['icon'] . "', path = '" . $_REQUEST['path'] . "'");
+	$dbconn->query("UPDATE settings SET `sitetitle` = '" . $_REQUEST['sitetitle'] . "', `lockdomains` = $setlockdomains, `selfregistration` = $setselfregistration");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated settings')");
 }
 ?>

@@ -11,40 +11,40 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
 // Check Post
 if (isset($_REQUEST['action'])) {
-  $action = $_REQUEST['action'];
+	$action = $_REQUEST['action'];
 } elseif (isset($_GET['action'])) {
-  $action = $_GET['action'];
+	$action = $_GET['action'];
 } else {
-  $action = '';
+	$action = '';
 }
 
 if (isset($_REQUEST['pkid'])) {
-  $pkid = $_REQUEST['pkid'];
+	$pkid = $_REQUEST['pkid'];
 } elseif (isset($_GET['pkid'])) {
-  $pkid = $_GET['pkid'];
+	$pkid = $_GET['pkid'];
 } else {
-  $pkid = '';
+	$pkid = '';
 }
 
 if (isset($_REQUEST['makeadmin'])) {
-  $makeadmin = $_REQUEST['makeadmin'];
+	$makeadmin = $_REQUEST['makeadmin'];
 } elseif (isset($_GET['makeadmin'])) {
-  $makeadmin = $_GET['makeadmin'];
+	$makeadmin = $_GET['makeadmin'];
 } else {
-  $makeadmin = '0';
+	$makeadmin = '0';
 }
 
 // User Actions
 if ($action == "update" && $pkid <> "") {
-  $dbconn->query("UPDATE users SET isadmin = '" . $makeadmin . "' WHERE pkid = '" . $pkid . "'");
-  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated user " . $_REQUEST['email'] . "')");
-  header("Location: /admin/users/");
+	$dbconn->query("UPDATE users SET isadmin = '" . $makeadmin . "' WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated user " . $_REQUEST['email'] . "')");
+	header("Location: /admin/users/");
 }
 
 if ($action == "delete" && $pkid <> "") {
-  $dbconn->query("DELETE FROM users WHERE pkid = '" . $pkid . "'");
-  mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted user " . $_REQUEST['email'] . "')");
-  header("Location: /admin/users/");
+	$dbconn->query("DELETE FROM users WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted user " . $_REQUEST['email'] . "')");
+	header("Location: /admin/users/");
 }
 ?>
 <!DOCTYPE HTML>
@@ -84,7 +84,15 @@ if ($action == "delete" && $pkid <> "") {
 								</tr>
 								<tr>
 									<td>Administrator</td>
-									<td><input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) { echo (" checked"); } ?>></td>
+									<td>
+										<label class="checkboxcontainer">
+											<input type="checkbox" name="makeadmin" value="1" onChange="this.form.submit()"<?php if ($userisadmin) {
+																																echo (" checked");
+																														   } ?>>
+											<span class="checkmark"></span>
+										</label>
+										<input type="checkbox" name="makeadmin" value="1">
+									</td>
 								</tr>
 								<tr>
 									<td><input type="submit" value="Update User" class="small">

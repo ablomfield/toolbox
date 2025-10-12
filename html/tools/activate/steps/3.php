@@ -26,6 +26,7 @@ $orgid = $_SESSION["orgid"];
 
 // Activate/Deactivate Numbers
 $postdata = array(
+  'phoneNumbers' => $numarr,
   'action' => $action
 );
 

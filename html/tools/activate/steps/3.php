@@ -16,6 +16,7 @@ if (isset($_REQUEST["action"])) {
 
 if (isset($_REQUEST["numbers"])) {
   $numbers = $_REQUEST["numbers"];
+  $numbers = str_replace("\r", "", $numbers);
   $numarr = explode("\n",$numbers);
 } else {
   die("Sorry, an error has occured.");

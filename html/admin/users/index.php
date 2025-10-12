@@ -39,7 +39,7 @@ if (isset($_SESSION['authtoken'])) {
 		<!-- Main Content -->
 		<section class="wrapper style1">
 			<div class="container">
-				<div class="row gtr-200">
+				<div class="row">
 					<section class="col-6 col-12-narrower">
 						<table class="default">
 							<tr>

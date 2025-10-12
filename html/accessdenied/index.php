@@ -56,7 +56,7 @@ if (isset($_GET["domain"])) {
 		<section class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200">
-					<section class="col-6">
+					<section class="col-6 aln-middle">
 						<div class="box post">
 							<h1>Access Denied!</h1>
 							<?php

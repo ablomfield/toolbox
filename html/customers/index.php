@@ -11,6 +11,7 @@ if (isset($_SESSION['authtoken'])) {
 	$loggedin = True;
 	$displayname = $_SESSION["displayname"];
 	$authtoken = $_SESSION["authtoken"];
+	$userpkid = $_SESSION["userpkid"];
 	if (isset($_SESSION['orgname'])) {
 		$orgname = $_SESSION["orgname"];
 	} else {
@@ -49,6 +50,8 @@ if ($action == "setcustomer") {
 	$orgname = $orgjson->displayName;
 	$_SESSION["orgid"] = $orgid;
 	$_SESSION["orgname"] = $orgname;
+	$updatesql = "UPDATE users SET lastorg = '" . $orgid . "' WHERE pkid = '" . $userpkid . "'";
+	mysqli_query($dbconn, $updatesql);
 	header('Location: /');
 }
 ?>

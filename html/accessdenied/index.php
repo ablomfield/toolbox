@@ -53,14 +53,24 @@ if (isset($_GET["domain"])) {
 		<!-- Header -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"); ?>
 		<!-- Main Content -->
-		<h1>Access Denied!</h1>
-		<?php
-		if ($reason == "selfregistration") {
-			echo ("<p>Users cannot log in until set up by an administrator. Please contact the administrator for further assistance.</p>\n");
-		} elseif ($reason == "domainlock") {
-			echo ("<p>Users from $domain are not allowed to access this system. Please contact the administrator for further assistance.</p>\n");
-		}
-		?>
+		<section class="wrapper style1">
+			<div class="container">
+				<div class="row gtr-200">
+					<section class="col-6 col-12-narrower">
+						<div class="box highlight">
+							<h1>Access Denied!</h1>
+							<?php
+							if ($reason == "selfregistration") {
+								echo ("<p>Users cannot log in until set up by an administrator. Please contact the administrator for further assistance.</p>\n");
+							} elseif ($reason == "domainlock") {
+								echo ("<p>Users from $domain are not allowed to access this system. Please contact the administrator for further assistance.</p>\n");
+							}
+							?>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
 		<!-- Footer -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"); ?>
 	</div>

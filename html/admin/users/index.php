@@ -36,44 +36,48 @@ if ($isadmin == false) {
 				<div class="row">
 					<section class="col-12">
 						<table class="default">
-							<tr>
-								<th>Username</th>
-								<th>Admin</th>
-								<th>Last Access</th>
-								<th></th>
-							</tr>
-							<?php
-							$rsdata = mysqli_query($dbconn, "SELECT * FROM users ORDER BY email") or die("Error in Selecting " .
-								mysqli_error($dbconn));
-							if ($rsdata) {
-								if (mysqli_num_rows($rsdata) > 0) {
-									while ($row = mysqli_fetch_assoc($rsdata)) {
-										echo "      <tr>\n";
-										echo "        <td>" . $row["email"] . "</td>\n";
-										if ($row["lastaccess"] != null) {
-											$lastaccess = new DateTime($row["lastaccess"], new DateTimeZone('GMT'));
-											$lastaccess->setTimezone(new DateTimeZone($timezone));
-											$lastaccess = $lastaccess->format('Y-m-d H:i:s');
-										} else {
-											$lastaccess = "-";
+							<thead>
+								<tr>
+									<th>Username</th>
+									<th>Admin</th>
+									<th>Last Access</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$rsdata = mysqli_query($dbconn, "SELECT * FROM users ORDER BY email") or die("Error in Selecting " .
+									mysqli_error($dbconn));
+								if ($rsdata) {
+									if (mysqli_num_rows($rsdata) > 0) {
+										while ($row = mysqli_fetch_assoc($rsdata)) {
+											echo "      <tr>\n";
+											echo "        <td>" . $row["email"] . "</td>\n";
+											if ($row["lastaccess"] != null) {
+												$lastaccess = new DateTime($row["lastaccess"], new DateTimeZone('GMT'));
+												$lastaccess->setTimezone(new DateTimeZone($timezone));
+												$lastaccess = $lastaccess->format('Y-m-d H:i:s');
+											} else {
+												$lastaccess = "-";
+											}
+											echo "        <td align=\"center\">";
+											if ($row["isadmin"]) {
+												echo ("<img src=\"/images/small-check-mark-icon.png\">");
+											} else {
+												echo ("&nbsp;");
+											}
+											echo ("</td>\n");
+											echo "        <td>" . $lastaccess . "</td>\n";
+											echo "        <form action=\"edit/\" method=\"post\">\n";
+											echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
+											echo "        <td><input type=\"submit\" value=\"Edit\" class=\"small\">\n";
+											echo "        </form>\n";
+											echo "      </tr>\n";
 										}
-										echo "        <td align=\"center\">";
-										if ($row["isadmin"]) {
-											echo ("<img src=\"/images/small-check-mark-icon.png\">");
-										} else {
-											echo ("&nbsp;");
-										}
-										echo ("</td>\n");
-										echo "        <td>" . $lastaccess . "</td>\n";
-										echo "        <form action=\"edit/\" method=\"post\">\n";
-										echo "        <input type=\"hidden\" name=\"pkid\" value=\"" . $row["pkid"] . "\">\n";
-										echo "        <td><input type=\"submit\" value=\"Edit\" class=\"small\">\n";
-										echo "        </form>\n";
-										echo "      </tr>\n";
 									}
 								}
-							}
-							?>
+								?>
+							</tbody>
 						</table>
 						<p>
 						<form method="post" action="/admin/users/add/">

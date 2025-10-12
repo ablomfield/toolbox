@@ -86,9 +86,9 @@ if ($action == "delete" && $pkid <> "") {
 									<td>Administrator</td>
 									<td>
 										<label class="checkboxcontainer">
-											<input type="checkbox" name="makeadmin" value="1" onChange="this.form.submit()"<?php if ($userisadmin) {
-																																echo (" checked");
-																														   } ?>>
+											<input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) {
+																									echo (" checked");
+																								} ?>>
 											<span class="checkmark"></span>
 										</label>
 										<input type="checkbox" name="makeadmin" value="1">

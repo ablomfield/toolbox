@@ -67,30 +67,55 @@ if ($action == "delete" && $pkid <> "") {
 					<section class="col-12">
 						<form method="post">
 							<?php
-							$rsuser = mysqli_query($dbconn, "SELECT * FROM tools WHERE pkid = '" . $pkid . "'");
-							$rowuser = mysqli_fetch_assoc($rsuser);
-							$name   = $rowuser["name"];
-							$isactive   = $rowuser["isactive"];
-							$userisadmin = $rowuser["isadmin"];
+							$rstool = mysqli_query($dbconn, "SELECT tools.name, tools.isactive, tools.icon, tools.path, tools.dateadded, users.email FROM tools LEFT JOIN users ON tools.fkuser = users.pkid WHERE pkid = '" . $pkid . "'");
+							$row = mysqli_fetch_assoc($rstool);
+							$name   = $row["name"];
+							$isactive   = $row["isactive"];
+							$icon = $row["icon"];
+							$path = $row["path"];
+							if ($row["dateadded"] != null) {
+								$dateadded = new DateTime($row["dateadded"], new DateTimeZone('GMT'));
+								$dateadded->setTimezone(new DateTimeZone($timezone));
+								$dateadded = $dateadded->format('Y-m-d H:i:s');
+							} else {
+								$dateadded = "-";
+							}
+							$addedby = $row["email"];
 							?>
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
 							<table>
 								<tr>
 									<td>Name</td>
-									<td><input type="text" name="name" size="50" value="<?php echo ($name); ?>" disabled>
+									<td><input type="text" name="name" size="50" value="<?php echo ($name); ?>">
 								</tr>
 								<tr>
 									<td>Active</td>
 									<td>
 										<label class="checkboxcontainer">
-											<input type="checkbox" name="isactive" value="1"<?php if ($isactive) {
+											<input type="checkbox" name="isactive" value="1" <?php if ($isactive) {
 																									echo (" checked");
 																								} ?>>
 											<span class="checkmark"></span>
 										</label>
 										<input type="checkbox" name="isactive" value="1">
 									</td>
+								</tr>
+								<tr>
+									<td>Icon</td>
+									<td><input type="text" name="icon" size="50" value="<?php echo ($icon); ?>">
+								</tr>
+								<tr>
+									<td>Path</td>
+									<td><input type="text" name="path" size="50" value="<?php echo ($path); ?>">
+								</tr>
+								<tr>
+									<td>Added By</td>
+									<td><input type="text" name="fkuser" size="50" value="<?php echo ($addedby); ?>" disabled>
+								</tr>
+								<tr>
+									<td>Added On</td>
+									<td><input type="text" name="addedon" size="50" value="<?php echo ($dateadded); ?>" disabled>
 								</tr>
 								<tr>
 									<td><input type="submit" value="Update Tool" class="small"></td>

@@ -36,12 +36,15 @@ if ($isadmin == false) {
 				<div class="row">
 					<section class="col-12">
 						<table class="default">
-							<tr>
-								<th>Domain</th>
-								<th>Added By</th>
-								<th>Added On</th>
-								<th></th>
-							</tr>
+							<thead>
+								<tr>
+									<th>Domain</th>
+									<th>Added By</th>
+									<th>Added On</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
 							<?php
 							$rsdata = mysqli_query($dbconn, "SELECT regdomains.pkid, regdomains.domain, regdomains.dateadded, users.email FROM regdomains LEFT JOIN users ON regdomains.fkuser = users.pkid ORDER BY regdomains.domain") or die("Error in Selecting " .
 								mysqli_error($dbconn));
@@ -68,6 +71,7 @@ if ($isadmin == false) {
 								}
 							}
 							?>
+							</tbody>
 						</table>
 						<p>
 						<form method="post" action="/admin/domains/add/">

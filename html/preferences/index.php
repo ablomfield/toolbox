@@ -708,7 +708,7 @@ if ($action == "debug") {
 							echo ("  <input type=\"hidden\" name=\"action\" value=\"debug\">\n");
 							echo ("  <label class=\"checkboxcontainer\"> Enable Debug:\n");
 							echo ("    <input type=\"checkbox\" name=\"enabledebug\" value=\"1\" onChange=\"this.form.submit()\"");
-							if ($setenabledebug) {
+							if ($enabledebug) {
 								echo " checked";
 							}
 							echo(">\n");

@@ -5,7 +5,7 @@
 											if ($rsdata) {
 												if (mysqli_num_rows($rsdata) > 0) {
 													while ($row = mysqli_fetch_assoc($rsdata)) {
-														echo ("					<section class=\"col-6 col-12-narrower\">\n");
+														echo ("					<section class=\"col-4 col-12-narrower\">\n");
 														echo ("						<div class=\"box highlight\">\n");
 														echo ("							<i class=\"icon major solid " . $row["icon"] . "\" style=\"text-decoration: none;\"></i>\n");
 														echo ("							<h3><a href=\"" . $row["path"] . "\">" . $row["name"] . "</a></h3>\n");

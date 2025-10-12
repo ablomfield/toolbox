@@ -1,4 +1,5 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/webexfunctions.php");
 if (isset($_REQUEST["locationid"])) {
   $locationid = $_REQUEST["locationid"];
   $_SESSION["locationid"] = $locationid;
@@ -30,19 +31,12 @@ $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
 for ($x = 0; $x < $usercount; $x++) {
   echo ("Checking $emailarr[$x].\n");
-  $personurl = "https://webexapis.com/v1/people?email=" . $emailarr[$x] . "&callingData=true";
-  $getperson = curl_init($personurl);
-  curl_setopt($getperson, CURLOPT_CUSTOMREQUEST, "GET");
-  curl_setopt($getperson, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt(
-    $getperson,
-    CURLOPT_HTTPHEADER,
-    array(
-      'Content-Type: application/json',
-      'Authorization: Bearer ' . $authtoken
-    )
-  );
-  $personjson = curl_exec($getperson);
+  $personid = webexgetpersonid($authtoken,$emailarr[$x]);
+  if ($personid != NULL) {
+    echo ("User found. Attempting to unfordward.<br>\n");
+  } else {
+    echo ("User not found!<br>\n");
+  }
 }
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");

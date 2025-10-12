@@ -16,7 +16,6 @@
 							echo (" class=\"current\"");
 						}
 						echo ("><a href=\"/customers/\">Customers</a></li>\n");
-
 						echo ("					    <li");
 						if ($sitesec == "tools") {
 							echo (" class=\"current\"");
@@ -40,7 +39,12 @@
 							echo ("					      </ul>\n");
 							echo ("					    </li>\n");
 						}
-						echo ("					    <li><a href=\"/logout\">Logout</a></li>\n");
+						echo ("					    <li");
+						if ($sitesec == "preferences") {
+							echo (" class=\"current\"");
+						}
+						echo ("><a href=\"/preferences/\">Preferences</a></li>\n");
+						echo ("					    <li><a href=\"/logout/\">Logout</a></li>\n");
 						echo ("					  </ul>\n");
 						echo ("					</nav>\n");
 						if ($orgname != "") {

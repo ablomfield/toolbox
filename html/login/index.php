@@ -104,7 +104,6 @@ if (isset($_GET['code'])) {
         $_SESSION["authtoken"] = $authtoken;
         $_SESSION["orgid"] = $orgid;
         $_SESSION["orgname"] = $orgname;
-
         mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
         header("Location: /");
     } else {
@@ -112,7 +111,6 @@ if (isset($_GET['code'])) {
         $isadmin = $rowusercheck["isadmin"];
         $userpkid = $rowusercheck["pkid"];
         $timezone = $rowusercheck["timezone"];
-        $_SESSION["isadmin"] = $isadmin;
         $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', orgid = '" . $orgid . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
         mysqli_query($dbconn, $updatesql);
         $_SESSION["userpkid"] = $userpkid;
@@ -123,6 +121,7 @@ if (isset($_GET['code'])) {
         $_SESSION["authtoken"] = $authtoken;
         $_SESSION["orgid"] = $orgid;
         $_SESSION["orgname"] = $orgname;
+        $_SESSION["isadmin"] = $isadmin;
         mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','LOGGED IN')");
         header("Location: /");
     }

@@ -30,12 +30,12 @@ $orgid = $_SESSION["orgid"];
 $usercount = count($emailarr);
 echo ("Attempting to unforward $usercount user(s)...<br>\n");
 for ($x = 0; $x < $usercount; $x++) {
-  echo ("Checking $emailarr[$x].\n");
+  echo ("Checking $emailarr[$x].<br />\n");
   $personid = webexgetpersonid($authtoken,$emailarr[$x]);
   if ($personid != NULL) {
-    echo ("User found. Attempting to unfordward.<br>\n");
+    echo ("User found. Attempting to unfordward.<br />\n");
   } else {
-    echo ("User not found!<br>\n");
+    echo ("User not found!<br />\n");
   }
 }
 if ($_SESSION['enabledebug']) {

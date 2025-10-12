@@ -5,17 +5,9 @@ date_default_timezone_set("America/Chicago");
 
 // Import Settings
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/lgw/lgwsettings.php");
 
 // Get Login Details
-if (isset($_SESSION['authtoken'])) {
-	$loggedin = True;
-	$displayname = $_SESSION["displayname"];
-	$authtoken = $_SESSION["authtoken"];
-	$orgname = $_SESSION["orgname"];
-} else {
-	$loggedin = False;
-}
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
 // Get LGW Step
 if (isset($_REQUEST['lgwstep'])) {

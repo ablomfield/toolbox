@@ -39,7 +39,7 @@ if ($isadmin == false) {
 							<thead>
 							<tr>
 								<th>Tool Name</th>
-								<th>Is Active</th>
+								<th>Active</th>
 								<th></th>
 							</tr>
 							</thead>

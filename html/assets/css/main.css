@@ -3517,6 +3517,8 @@ input[type=checkbox] {
 	border: 2px #0081bc;
 	display: block;
 	background: #ffffff;
+	width: 15px;
+	height: 15px;
 }
 
 /* Radio Input */

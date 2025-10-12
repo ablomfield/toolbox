@@ -55,7 +55,8 @@ if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   echo ("URL: $acturl\n");
   echo ("Data:\n");
-  echo ($postdata . "\n");
+  print_r($postdata);
+  echo ("\n");
   echo ("Auth Token: $authtoken\n");
   //echo ("Error Code: " . curl_getinfo($getlocation, CURLINFO_HTTP_CODE) . "\n");
   //echo ("Trunks Response:\n");

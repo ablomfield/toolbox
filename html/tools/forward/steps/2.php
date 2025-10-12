@@ -16,7 +16,7 @@ if (isset($_REQUEST["emails"])) {
 }
 
 $orgid = $_SESSION["orgid"];
-$putjson = "{\"callForwarding\":{\"always\":{\"enabled\":false}}}";
+$putjson = "{\n    \"callForwarding\": {\n        \"always\": {\n            \"enabled\": false\n        }\n    }\n}";
 
 // Unforward Users
 $usercount = count($emailarr);

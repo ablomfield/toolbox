@@ -40,7 +40,7 @@ if (isset($_SESSION['authtoken'])) {
 		<section class="wrapper style1">
 			<div class="container">
 				<div class="row">
-					<section class="col-6 col-12-narrower">
+					<section class="col-12">
 						<table class="default">
 							<tr>
 								<th>Username</th>

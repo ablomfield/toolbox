@@ -59,6 +59,7 @@ if ($action == "add") {
 									<td><input type="text" name="name" size="50" value="">
 								</tr>
 								<tr>
+									<td>Active</td>
 									<td>
 										<label class="checkboxcontainer">
 											<input type="checkbox" name="isactive" value="1">

@@ -25,7 +25,9 @@ if (isset($_REQUEST["emails"])) {
 $orgid = $_SESSION["orgid"];
 
 
-// Activate/Deactivate Numbers
+// Unforward Users
+$usercount = count($emailarr);
+echo ("Attempting to unforward $usercount user(s)...<br>\n");
 
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");

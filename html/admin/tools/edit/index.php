@@ -31,9 +31,16 @@ if (isset($_REQUEST['pkid'])) {
 	$pkid = '';
 }
 
+if (isset($_REQUEST['isactive'])) {
+	$setisactive = 1;
+} else {
+	$setisactive = 0;
+}
+
+
 // User Actions
 if ($action == "update" && $pkid <> "") {
-	$dbconn->query("UPDATE tools SET name = '" . $_REQUEST['name'] . "', isactive = " . $_REQUEST['isactive'] . ", icon = '" . $_REQUEST['icon'] . "', path = '" . $_REQUEST['path'] . "' WHERE pkid = '" . $pkid . "'");
+	$dbconn->query("UPDATE tools SET name = '" . $_REQUEST['name'] . "', isactive = " . $setisactive . ", icon = '" . $_REQUEST['icon'] . "', path = '" . $_REQUEST['path'] . "' WHERE pkid = '" . $pkid . "'");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated tools " . $_REQUEST['name'] . "')");
 	header("Location: /admin/tools/");
 }

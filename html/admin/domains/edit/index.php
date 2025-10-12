@@ -31,24 +31,24 @@ if (isset($_REQUEST['pkid'])) {
 	$pkid = '';
 }
 
-if (isset($_REQUEST['makeadmin'])) {
-	$makeadmin = $_REQUEST['makeadmin'];
-} elseif (isset($_GET['makeadmin'])) {
-	$makeadmin = $_GET['makeadmin'];
+if (isset($_REQUEST['domain'])) {
+	$domain = $_REQUEST['domain'];
+} elseif (isset($_GET['domain'])) {
+	$domain = $_GET['domain'];
 } else {
-	$makeadmin = '0';
+	$domain = '';
 }
 
 // User Actions
 if ($action == "update" && $pkid <> "") {
-	$dbconn->query("UPDATE users SET isadmin = '" . $makeadmin . "' WHERE pkid = '" . $pkid . "'");
-	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated user " . $_REQUEST['email'] . "')");
+	$dbconn->query("UPDATE regdomains SET domain = '" . $domain . "' WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated domain $domain')");
 	header("Location: /admin/users/");
 }
 
 if ($action == "delete" && $pkid <> "") {
-	$dbconn->query("DELETE FROM users WHERE pkid = '" . $pkid . "'");
-	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted user " . $_REQUEST['email'] . "')");
+	$dbconn->query("DELETE FROM regdomains WHERE pkid = '" . $pkid . "'");
+	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted domain $domain')");
 	header("Location: /admin/users/");
 }
 ?>
@@ -75,39 +75,27 @@ if ($action == "delete" && $pkid <> "") {
 					<section class="col-12">
 						<form method="post">
 							<?php
-							$rsuser = mysqli_query($dbconn, "SELECT * FROM users WHERE pkid = '" . $pkid . "'");
+							$rsuser = mysqli_query($dbconn, "SELECT * FROM regdomains WHERE pkid = '" . $pkid . "'");
 							$rowuser = mysqli_fetch_assoc($rsuser);
-							$useremail   = $rowuser["email"];
-							$userisadmin = $rowuser["isadmin"];
+							$domain   = $rowuser["domain"];
 							?>
 							<input type="hidden" name="action" value="update">
 							<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
 							<table>
 								<tr>
-									<td>Email Address</td>
-									<td><input type="text" name="email" size="50" value="<?php echo ($useremail); ?>" disabled>
+									<td>Domain</td>
+									<td><input type="text" name="domain" size="50" value="<?php echo ($domain); ?>" disabled>
 								</tr>
 								<tr>
-									<td>Administrator</td>
-									<td>
-										<label class="checkboxcontainer">
-											<input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) {
-																									echo (" checked");
-																								} ?>>
-											<span class="checkmark"></span>
-										</label>
-										<input type="checkbox" name="makeadmin" value="1">
-									</td>
-								</tr>
-								<tr>
-									<td><input type="submit" value="Update User" class="small">
+									<td><input type="submit" value="Update Domain" class="small">
 						</form>
 						<td>
 							<form method="post" action="/admin/users/edit/" onsubmit="return confirm('Are you sure you want to delete <?php echo ($useremail); ?>?');">
 								<input type="hidden" name="action" value="delete">
 								<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
+								<input type="hidden" name="pkid" value="<?php echo ($pkid); ?>">
 								<input type="hidden" name="email" value="<?php echo ($useremail); ?>">
-								<input type="submit" value="Delete User" class="small">
+								<input type="submit" value="Delete Domain" class="small">
 							</form>
 						</td>
 						</tr>

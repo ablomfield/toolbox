@@ -43,13 +43,13 @@ if (isset($_REQUEST['domain'])) {
 if ($action == "update" && $pkid <> "") {
 	$dbconn->query("UPDATE regdomains SET domain = '" . $domain . "' WHERE pkid = '" . $pkid . "'");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Updated domain $domain')");
-	header("Location: /admin/users/");
+	header("Location: /admin/domains/");
 }
 
 if ($action == "delete" && $pkid <> "") {
 	$dbconn->query("DELETE FROM regdomains WHERE pkid = '" . $pkid . "'");
 	mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Deleted domain $domain')");
-	header("Location: /admin/users/");
+	header("Location: /admin/domains/");
 }
 ?>
 <!DOCTYPE HTML>

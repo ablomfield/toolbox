@@ -89,7 +89,19 @@ if ($action == "update") {
 								</tr>
 								<tr>
 									<td>Client ID</td>
-									<td><input type="text" name="name" size="50" value="<?php echo ($client_id); ?>">
+									<td><input type="text" name="client_id" size="50" value="<?php echo ($client_id); ?>">
+								</tr>
+								<tr>
+									<td>Client Secret</td>
+									<td><input type="text" name="client_secret" size="50" value="<?php echo ($client_secret); ?>">
+								</tr>
+								<tr>
+									<td>Integration ID</td>
+									<td><input type="text" name="integration_id" size="50" value="<?php echo ($integration_id); ?>">
+								</tr>
+								<tr>
+									<td>OAuth URL</td>
+									<td><input type="text" name="oauth_url" size="50" value="<?php echo ($oauth_url); ?>">
 								</tr>
 								<tr>
 									<td colspan="2"><b>Login Settings</b></td>

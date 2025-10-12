@@ -86,6 +86,7 @@ echo ("           </table>\n");
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
   echo ("Org ID: $orgid\n");
+  echo ("Status: " . curl_errno($gettrunks) . "\n");
   echo ("Trunks Response:\n");
   print_r($trunksdata);
   echo ("  </textarea><br>\n");

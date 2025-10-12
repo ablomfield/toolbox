@@ -37,7 +37,7 @@ if (isset($_SESSION['authtoken'])) {
 		<!-- Header -->
 		<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"); ?>
 		<!-- Main Content -->
-		<table id="list">
+		<table class="default">
 			<tr>
 				<th>Username</th>
 				<th>Admin</th>

@@ -27,7 +27,7 @@ if (isset($_REQUEST['action'])) {
 if ($action == "add") {
   $dbconn->query("INSERT INTO regdomains (`domain`, `fkuser`, `dateadded`) VALUES('" . $_REQUEST['domain'] . "', $userpkid, now())");
   mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdesc) VALUES(NOW(),'" . $email . "','Added domain " . $_REQUEST['domain'] . "')");
-  header("Location: /admin/users/");
+  header("Location: /admin/domains/");
 }
 ?>
 <!DOCTYPE HTML>

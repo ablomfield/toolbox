@@ -68,6 +68,8 @@ if ($usercount > 0) {
       echo ("<td>Not Found</td>\n");
       echo ("</tr>\n");
     }
+    ob_flush();
+    flush();
   }
   echo ("</tbody>\n");
   echo ("</table>\n");

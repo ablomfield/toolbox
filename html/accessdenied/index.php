@@ -56,6 +56,8 @@ if (isset($_GET["domain"])) {
 		<section class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200">
+					<section class="col-6 col-12-narrower">
+						<div class="box post">
 							<h1>Access Denied!</h1>
 							<?php
 							if ($reason == "selfregistration") {
@@ -64,6 +66,8 @@ if (isset($_GET["domain"])) {
 								echo ("<p>Users from $domain are not allowed to access this system. Please contact the administrator for further assistance.</p>\n");
 							}
 							?>
+						</div>
+					</section>
 				</div>
 			</div>
 		</section>

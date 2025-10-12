@@ -41,7 +41,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 							</thead>
 							<tbody>
 <?php
-$rsdata = mysqli_query($dbconn, "SELECT eventdate, eventsource, eventdesc ORDER BY historytime") or die("Error in Selecting " .
+$rsdata = mysqli_query($dbconn, "SELECT eventdate, eventsource, eventdesc FROM history ORDER BY eventdate DESC") or die("Error in Selecting " .
  mysqli_error($dbconn));
 if($rsdata){
     if(mysqli_num_rows($rsdata) > 0){

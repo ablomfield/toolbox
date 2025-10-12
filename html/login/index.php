@@ -1,0 +1,111 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_SCHEME"] == "https" || $_SERVER["HTTP_X_FORWARDED_SCHEME"] == "https") {
+    $protocol = "https://";
+} else {
+    $protocol = "http://";
+}
+$servername = $_SERVER["HTTP_HOST"] . "/";
+
+// Import Settings
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
+
+if (isset($_GET['code'])) {
+    // Retrieve Code
+    $oauth_code = $_GET['code'];
+    $oauth_state = $_GET['state'];
+    $accessarr = array(
+        'grant_type' => 'authorization_code',
+        'redirect_uri' => $protocol . $servername,
+        'client_id' => $client_id,
+        'client_secret' => $client_secret,
+        'code' => $oauth_code
+    );
+    $accessenc = http_build_query($accessarr);
+    $getaccess = curl_init();
+    curl_setopt_array($getaccess, array(
+        CURLOPT_URL => 'https://webexapis.com/v1/access_token',
+        CURLOPT_RETURNTRANSFER => true, // return the transfer as a string of the return value
+        CURLOPT_TIMEOUT => 0,   // The maximum number of seconds to allow cURL functions to execute.
+        CURLOPT_POST => true,   // This line must place before CURLOPT_POSTFIELDS
+        CURLOPT_POSTFIELDS => $accessenc // Data that will send
+    ));
+    $accessdata = curl_exec($getaccess);
+    $accessjson = json_decode($accessdata);
+    //print_r($accessdata);
+    $authtoken = $accessjson->access_token;
+    $lastaccess = date("Y-m-d H:i:s", time());
+
+    // Retrieve Details using authtoken
+    $personurl = "https://webexapis.com/v1/people/me";
+    $getperson = curl_init($personurl);
+    curl_setopt($getperson, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($getperson, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt(
+        $getperson,
+        CURLOPT_HTTPHEADER,
+        array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $authtoken
+        )
+    );
+    $persondata = curl_exec($getperson);
+    $personjson = json_decode($persondata);
+    $personid = $personjson->id;
+    $displayname = $personjson->displayName;
+    $emailarr = $personjson->emails;
+    $email = strtolower($emailarr[0]);
+    $emaildomain = substr($email, strpos($email, '@') + 1);
+    $orgid = $personjson->orgId;
+    $timezone = $personjson->timeZone;
+
+    // Check if User Exists in Database
+    $rsusercheck = mysqli_query($dbconn, "SELECT * FROM users WHERE email = '" . $email . "'");
+    if (mysqli_num_rows($rsusercheck) == 0) {
+        // Check Self Registration and Deny if Disabled
+        if ($selfregistration == 0) {
+            header("Location: /accessdenied?reason=selfregistration");
+            exit("Denied - Self Registration Not Allowed");
+        }
+        // Check Allowed Domains and Deny if Notin List
+        if ($lockdomains == 1) {
+            $rsdomaincheck = mysqli_query($dbconn, "SELECT * FROM regdomains WHERE domain = '" . $emaildomain . "'");
+            if (mysqli_num_rows($rsdomaincheck) == 0) {
+                header("Location: /accessdenied?reason=domainlock&domain=" . $emaildomain);
+                exit("Denied - domain not allowed ($emaildomain)");
+            }
+        }
+        $insertsql = "INSERT INTO users (personid, displayname, email, orgid, lastaccess, timezone) VALUES('" . $personid . "', '" . str_replace("'", "''", $displayname) . "', '" . $email . "', '" . $orgid . "', '" . $lastaccess . "', '" . $timezone . "')";
+        mysqli_query($dbconn, $insertsql);
+        $userpkid = $dbconn->pkid;
+        $_SESSION["userpkid"] = $userpkid;
+        $_SESSION["personid"] = $personid;
+        $_SESSION["email"] = $email;
+        $_SESSION["displayname"] = $displayname;
+        $_SESSION["timezone"] = $timezone;
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdescription) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        header("Location: /");
+    } else {
+        $rowusercheck = mysqli_fetch_assoc($rsusercheck);
+        $isdevadmin = $rowusercheck["isdevadmin"];
+        $issysadmin = $rowusercheck["issysadmin"];
+        $ismigadmin = $rowusercheck["ismigadmin"];
+        $userpkid = $rowusercheck["pkid"];
+        $timezone = $rowusercheck["timezone"];
+        $_SESSION["isdevadmin"] = $isdevadmin;
+        $_SESSION["issysadmin"] = $issysadmin;
+        $_SESSION["ismigadmin"] = $ismigadmin;
+        $updatesql = "UPDATE users SET personid = '" . $personid . "', displayname = '" . str_replace("'", "''", $displayname) . "', email = '" . $email . "', orgid = '" . $orgid . "', lastaccess = '" . $lastaccess . "' WHERE email = '" . $email . "'";
+        mysqli_query($dbconn, $updatesql);
+        $_SESSION["userpkid"] = $userpkid;
+        $_SESSION["personid"] = $personid;
+        $_SESSION["email"] = $email;
+        $_SESSION["displayname"] = $displayname;
+        $_SESSION["timezone"] = $timezone;
+        mysqli_query($dbconn, "INSERT INTO history (eventdate, eventsource, eventdescription) VALUES(NOW(),'". $email . "','LOGGED IN')");
+        header("Location: /");
+    }
+} else {
+    header("Location: /");
+}

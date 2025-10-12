@@ -95,7 +95,7 @@ if ($action == "delete" && $pkid <> "") {
 								</tr>
 								<tr>
 									<td>Administrator</td>
-									<td><input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) { echo (" checked"); } ?>><span class="radio-checkmark"></span></td>
+									<td><input type="checkbox" name="makeadmin" value="1"<?php if ($userisadmin) { echo (" checked"); } ?>></td>
 								</tr>
 								<tr>
 									<td><input type="submit" value="Update User" class="small">

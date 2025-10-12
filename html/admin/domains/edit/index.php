@@ -84,7 +84,7 @@ if ($action == "delete" && $pkid <> "") {
 							<table>
 								<tr>
 									<td>Domain</td>
-									<td><input type="text" name="domain" size="50" value="<?php echo ($domain); ?>" disabled>
+									<td><input type="text" name="domain" size="50" value="<?php echo ($domain); ?>">
 								</tr>
 								<tr>
 									<td><input type="submit" value="Update Domain" class="small">

@@ -1,41 +1,71 @@
 <?php
-// Update History
-$dbconn->query("UPDATE lgwhistory SET lgwstep = 1 WHERE pkid = '" . $_SESSION["historyid"] . "'");
+if (isset($_REQUEST["orgid"])) {
+  $orgid = $_REQUEST["orgid"];
+  $_SESSION["orgid"] = $orgid;
+} elseif (isset($_SESSION["orgid"])) {
+  $orgid = $_SESSION["orgid"];
+} else {
+  die("Sorry, an error has occured.");
+}
 
-// Retrieve Org List
-$orgsurl = "https://webexapis.com/v1/organizations";
-$getorgs = curl_init($orgsurl);
-curl_setopt($getorgs, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($getorgs, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($getorgs, CURLOPT_FAILONERROR, true);
+// Retrieve Organization Details
+$orgurl = "https://webexapis.com/v1/organizations/$orgid";
+$getorg = curl_init($orgurl);
+curl_setopt($getorg, CURLOPT_CUSTOMREQUEST, "GET");
+curl_setopt($getorg, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($getorg, CURLOPT_FAILONERROR, true);
 curl_setopt(
-  $getorgs,
+  $getorg,
   CURLOPT_HTTPHEADER,
   array(
     'Content-Type: application/json',
     'Authorization: Bearer ' . $authtoken
   )
 );
-$orgsdata = curl_exec($getorgs);
-if (curl_errno($getorgs) == "0") {
-  $orgsjson = json_decode($orgsdata);
-  $orgsarray = json_decode($orgsdata, true);
-  $orgcount = count($orgsarray['items']);
-  echo ("					  <p>Select an organization to search for trunks:</p>\n");
+$orgdata = curl_exec($getorg);
+$orgjson = json_decode($orgdata);
+$orgname = $orgjson->displayName;
+$_SESSION["orgname"] = $orgname ;
+
+$dbconn->query("UPDATE lgwhistory SET lgwstep = 2, orgid = '$orgid', orgname = '$orgname' WHERE pkid = '" . $_SESSION["historyid"] . "'");
+
+// Retrieve Trunk List
+$trunksurl = "https://webexapis.com/v1/telephony/config/premisePstn/trunks?orgId=$orgid";
+$gettrunks = curl_init($trunksurl);
+curl_setopt($gettrunks, CURLOPT_CUSTOMREQUEST, "GET");
+curl_setopt($gettrunks, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($gettrunks, CURLOPT_FAILONERROR, true);
+curl_setopt(
+  $gettrunks,
+  CURLOPT_HTTPHEADER,
+  array(
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $authtoken
+  )
+);
+$trunksdata = curl_exec($gettrunks);
+if (curl_errno($gettrunks) == "0") {
+  $trunksjson = json_decode($trunksdata);
+  $trunksarray = json_decode($trunksdata, true);
+  $trunkcount = count($trunksarray['trunks']);
+  echo ("					  <p>Found " . $trunkcount . " trunk(s) for $orgname</p>\n");
+  echo ("					  <p>Select trunk to build configuration</p>\n");
   echo ("					  <form method=\"post\" action=\"/lgw/\">\n");
-  echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
+  echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"3\">\n");
   echo ("					    <table class=\"default\">\n");
-  for ($x = 0; $x < $orgcount; $x++) {
-    echo ("					      <tr>\n");
-    echo ("					        <td>\n");
-    echo ("     					    <label class=\"radio-container\">\n");
-    echo ("			     		        <input type=\"radio\" name=\"orgid\" value=\"" . $orgsjson->items[$x]->id . "\">\n");
-    echo ("					            <span class=\"radio-checkmark\"></span>\n");
-    echo ("					        </td>\n");
-    echo ("					        <td>\n");
-    echo ("					         " . $orgsjson->items[$x]->displayName . "</label>\n");
-    echo ("					        </td>\n");
-    echo ("					      </tr>\n");
+  for ($x = 0; $x < $trunkcount; $x++) {
+    if ($trunksjson->trunks[$x]->trunkType == "REGISTERING") {
+      echo ("					      <tr>\n");
+      echo ("					        <td>\n");
+      echo ("     					    <label class=\"radio-container\">\n");
+      echo ("			     		        <input type=\"radio\" name=\"trunkid\" value=\"" . $trunksjson->trunks[$x]->id . "\">\n");
+      echo ("					            <span class=\"radio-checkmark\"></span>\n");
+      echo ("					        </td>\n");
+      echo ("					        <td>\n");
+      echo ("					         " . $trunksjson->trunks[$x]->name . "</label>\n");
+      echo ("					        </td>\n");
+      echo ("					      </tr>\n");
+    }
   }
   echo ("					      <tr>\n");
   echo ("					        <td colspan=\"2\">\n");
@@ -58,4 +88,3 @@ echo ("					      <td><input type=\"submit\" value=\"Start Over\" class=\"button
 echo ("					      </form>\n");
 echo ("             </tr>\n");
 echo ("           </table>\n");
-?>

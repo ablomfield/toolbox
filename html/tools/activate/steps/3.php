@@ -33,19 +33,19 @@ $postdata = array(
 $postjson = json_encode($postdata);
 
 $acturl = "https://webexapis.com/v1/telephony/config/locations/$locationid/numbers?orgId=$orgid";
-$postact = curl_init($acturl);
-curl_setopt($postact, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($postact, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($postact, CURLOPT_POSTFIELDS, $postjson);
+$putact = curl_init($acturl);
+curl_setopt($putact, CURLOPT_CUSTOMREQUEST, "PUT");
+curl_setopt($putact, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($putact, CURLOPT_POSTFIELDS, $postjson);
 curl_setopt(
-  $postact,
+  $putact,
   CURLOPT_HTTPHEADER,
   array(
     'Content-Type: application/json',
     'Authorization: Bearer ' . $authtoken
   )
 );
-$actdata = curl_exec($postact);
+$actdata = curl_exec($putact);
 $actjson = json_decode($actdata);
 
 echo ("           <table class=\"default\">\n");
@@ -64,7 +64,7 @@ if ($_SESSION['enabledebug']) {
   echo ("\n");  
   echo ("JSON:\n$postjson\n");
   echo ("Auth Token: $authtoken\n");
-  echo ("Error Code: " . curl_getinfo($postact, CURLINFO_HTTP_CODE) . "\n");
+  echo ("Error Code: " . curl_getinfo($putact, CURLINFO_HTTP_CODE) . "\n");
   echo ("Activation Response:\n");
   print_r($actdata);
   echo ("  </textarea><br>\n");

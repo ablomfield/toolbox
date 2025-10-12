@@ -1,7 +1,7 @@
 <?php
 if (isset($_REQUEST["locationid"])) {
   $locationid = $_REQUEST["locationid"];
-  $_SESSION["locationid"] = $trunkid;
+  $_SESSION["locationid"] = $locationid;
 } elseif (isset($_SESSION["locationid"])) {
   $locationid = $_SESSION["locationid"];
 } else {

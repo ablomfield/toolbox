@@ -49,7 +49,7 @@ if (curl_errno($gettrunks) == "0") {
   echo ("					  <p>Found " . $trunkcount . " trunk(s) for $orgname</p>\n");
   echo ("					  <p>Select trunk to build configuration</p>\n");
   echo ("					  <form method=\"post\">\n");
-  echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"3\">\n");
+  echo ("					    <input type=\"hidden\" name=\"lgwstep\" value=\"2\">\n");
   echo ("					    <table class=\"default\">\n");
   for ($x = 0; $x < $trunkcount; $x++) {
     if ($trunksjson->trunks[$x]->trunkType == "REGISTERING") {

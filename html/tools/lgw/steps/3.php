@@ -9,8 +9,6 @@ if (isset($_REQUEST["trunkid"])) {
 }
 $orgid = $_SESSION["orgid"];
 
-$dbconn->query("UPDATE lgwhistory SET lgwstep = 4 WHERE pkid = '" . $_SESSION["historyid"] . "'");
-
 // Retrieve Trunk Information
 $trunksurl = "https://webexapis.com/v1/telephony/config/premisePstn/trunks/$trunkid?orgId=$orgid";
 $gettrunks = curl_init($trunksurl);
@@ -226,10 +224,7 @@ echo ("           <table class=\"default\">\n");
 echo ("             <tr>\n");
 echo ("					      <form method=\"post\">\n");
 echo ("					      <input type=\"hidden\" name=\"lgwstep\" value=\"" . ($lgwstep - 1) . "\">\n");
-echo ("					      <td><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
-echo ("					      </form>\n");
-echo ("					      <form method=\"post\" action=\"/lgw/logout\">\n");
-echo ("					      <td><input type=\"submit\" value=\"Start Over\" class=\"button\"></td>\n");
+echo ("					      <td colspan=\"2\"><input type=\"submit\" value=\"Go Back\" class=\"button\"></td>\n");
 echo ("					      </form>\n");
 echo ("             </tr>\n");
 echo ("           </table>\n");

@@ -30,7 +30,7 @@ if ($trunksjson->status == "online") {
 }
 echo ("					  <p>Please enter the following information to build the configuration file...</p>\n");
 echo ("					  <form method=\"post\"\">\n");
-echo ("					  <input type=\"hidden\" name=\"lgwstep\" value=\"4\">\n");
+echo ("					  <input type=\"hidden\" name=\"lgwstep\" value=\"3\">\n");
 echo ("					  <table class=\"default\">\n");
 echo ("					    <tr>\n");
 echo ("					      <th align=\"right\">Location</th>\n");

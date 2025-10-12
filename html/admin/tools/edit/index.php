@@ -67,7 +67,7 @@ if ($action == "delete" && $pkid <> "") {
 					<section class="col-12">
 						<form method="post">
 							<?php
-							$rstool = mysqli_query($dbconn, "SELECT tools.name, tools.isactive, tools.icon, tools.path, tools.dateadded, users.email FROM tools LEFT JOIN users ON tools.fkuser = users.pkid WHERE pkid = '" . $pkid . "'");
+							$rstool = mysqli_query($dbconn, "SELECT tools.name, tools.isactive, tools.icon, tools.path, tools.dateadded, users.email FROM tools LEFT JOIN users ON tools.fkuser = users.pkid WHERE tools.pkid = '" . $pkid . "'");
 							$row = mysqli_fetch_assoc($rstool);
 							$name   = $row["name"];
 							$isactive   = $row["isactive"];

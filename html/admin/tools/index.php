@@ -36,11 +36,14 @@ if ($isadmin == false) {
 				<div class="row">
 					<section class="col-12">
 						<table class="default">
+							<thead>
 							<tr>
 								<th>Tool Name</th>
 								<th>Is Active</th>
 								<th></th>
 							</tr>
+							</thead>
+							<tbody>
 							<?php
 							$rsdata = mysqli_query($dbconn, "SELECT pkid, name, isactive FROM tools ORDER BY name") or die("Error in Selecting " .
 								mysqli_error($dbconn));
@@ -65,6 +68,7 @@ if ($isadmin == false) {
 								}
 							}
 							?>
+							</tbody>
 						</table>
 						<p>
 						<form method="post" action="add/">

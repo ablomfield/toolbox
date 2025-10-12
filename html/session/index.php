@@ -1,5 +1,5 @@
 <?php
-$sitesec = "home";
+$sitesec = "none";
 session_start();
 date_default_timezone_set("America/Chicago");
 

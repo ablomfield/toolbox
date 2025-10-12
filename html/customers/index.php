@@ -21,7 +21,7 @@ if (isset($_SESSION['authtoken'])) {
 if (isset($_POST["action"])) {
 	$action = $_POST["action"];
 } else {
-	$arction = "";
+	$action = "";
 }
 
 // Set Customer

@@ -32,10 +32,11 @@
 							}
 							echo ("><a href=\"#\">Admin</a>\n");
 							echo ("					      <ul>\n");
-							echo ("					        <li><a href=\"/admin/users/\">Users</a></li>\n");
-							echo ("					        <li><a href=\"/admin/domains/\">History</a></li>\n");
-							echo ("					        <li><a href=\"/admin/history/\">Domains</a></li>\n");
+							echo ("					        <li><a href=\"/admin/domains/\">Domains</a></li>\n");
+							echo ("					        <li><a href=\"/admin/history/\">History</a></li>\n");
 							echo ("					        <li><a href=\"/admin/settings/\">Settings</a></li>\n");
+							echo ("					        <li><a href=\"/admin/tools/\">Tools</a></li>\n");
+							echo ("					        <li><a href=\"/admin/users/\">Users</a></li>\n");
 							echo ("					      </ul>\n");
 							echo ("					    </li>\n");
 						}

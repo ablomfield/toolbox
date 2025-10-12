@@ -89,10 +89,10 @@ if ($locationjson->pstnConnectionType != "LOCAL_GATEWAY") {
 }
 if ($_SESSION['enabledebug']) {
   echo ("  <textarea style=\"width:800px; height:300px;\">\n");
-  echo ("URL: $trunksurl\n");
+  echo ("URL: $locationurl\n");
   echo ("Auth Token: $authtoken\n");
-  echo ("Error Code: " . curl_getinfo($gettrunks, CURLINFO_HTTP_CODE) . "\n");
+  echo ("Error Code: " . curl_getinfo($getlocation, CURLINFO_HTTP_CODE) . "\n");
   echo ("Trunks Response:\n");
-  print_r($trunksdata);
+  print_r($locationdata);
   echo ("  </textarea><br>\n");
 }

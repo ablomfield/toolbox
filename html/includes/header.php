@@ -58,7 +58,7 @@
 						echo ("					</nav>\n");
 						if ($orgname != "") {
 							echo ("<div class=\"row aln-right\">\n");
-							echo ("<h3>" . $orgname . "<h3>\n");
+							echo ("<h3>Customer: " . $orgname . "<h3>\n");
 							echo ("</div>\n");
 						}
 					}

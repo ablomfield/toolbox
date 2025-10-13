@@ -33,7 +33,7 @@ if ($isadmin == false) {
 		<!-- Main Content -->
 		<section class="wrapper style1">
 			<div class="container">
-				<div class="row">
+				<div class="row aln-center">
 					<section class="col-12">
 						<table class="default">
 							<thead>

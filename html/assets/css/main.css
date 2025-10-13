@@ -2567,7 +2567,7 @@ input[type="reset"]:active,
 input[type="button"]:active,
 button:active,
 .button:active {
-	background-color: #ce4e44;
+	background-color: #636262;
 	color: #fff;
 }
 

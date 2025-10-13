@@ -3,8 +3,7 @@
 				<div class="row gtr-200">
 					<section class="col-6 col-12-narrower">
 						<div class="box highlight">
-							<a href="<?php echo($oauth_url); ?>"><i class="icon major solid fa-network-wired" style="text-decoration: none;"></i>
-							<h3>Login</h3></a>
+							<a href="<?php echo($oauth_url); ?>"><img width="400" src="/images/signin.png" alt="Sign In with Webex" /></a>
 						</div>
 					</section>
 				</div>

@@ -207,6 +207,7 @@ $orgid = $_SESSION["orgid"];
                                     try {
                                         $dramResp = requestWithRetry("GET", $dramUrl, $headers);
                                         $dram = $dramResp['body']['result']['Peripherals']['ConnectedDevice'][0]['DRAM'] ?? 0;
+                                        echo ($dram . "<br>\n");
                                     } catch (Exception) {
                                         $dram = 0;
                                     }

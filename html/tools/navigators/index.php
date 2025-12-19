@@ -203,7 +203,7 @@ $orgid = $_SESSION["orgid"];
                                         "https://webexapis.com/v1/xapi/status" .
                                         "?deviceId={$device['id']}" .
                                         "&name=Peripherals.ConnectedDevice[{$nav['id']}].DRAM";
-
+                                    echo ("$dramUrl<br>\n");
                                     try {
                                         $dramResp = requestWithRetry("GET", $dramUrl, $headers);
                                         $dram = $dramResp['body']['result']['Peripherals']['ConnectedDevice'][0]['DRAM'] ?? 0;

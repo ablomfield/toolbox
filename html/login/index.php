@@ -35,7 +35,15 @@ if (isset($_GET['code'])) {
     $accessjson = json_decode($accessdata);
     //print_r($accessdata);
     $authtoken = $accessjson->access_token;
+    $authexpires = $accessjson->expires_in;
+    $refreshtoken = $accessjson->refresh_token;
+    $refreshexpires = $accessjson->refresh_token_expires_in;
+    $authexpires = date("Y-m-d H:i:s", time() + $authexpires);
+    $refreshexpires = date("Y-m-d H:i:s", time() + $refreshexpires);
     $lastaccess = date("Y-m-d H:i:s", time());
+
+    $lastaccess = date("Y-m-d H:i:s", time());
+
 
     // Retrieve Details using authtoken
     $personurl = "https://webexapis.com/v1/people/me";

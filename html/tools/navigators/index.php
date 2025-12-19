@@ -143,9 +143,13 @@ $orgid = $_SESSION["orgid"];
                             }
                         }
 
-                        echo "Total rooms retrieved: " . count($devices) . "\n";
+                        echo "<h1>Total rooms retrieved: " . count($devices) . "</h1>\n";
+                        echo ("<textarea>\n");
+                        print_r($devices);
+                        echo ("</textarea>\n");
 
-                        // ---------------- OPEN FILE ----------------
+
+                        // ---------------- TABLE START ----------------
                         echo ("                      <table class=\"default\">\n");
                         echo ("                        <thead>\n");
                         echo ("                          <tr>\n");
@@ -218,6 +222,7 @@ $orgid = $_SESSION["orgid"];
                         }
 
                         curl_multi_close($multi);
+                        // ---------------- TABLE END ----------------
                         echo ("                        </tbody>\n");
                         echo ("                      </table>\n");
                         echo ("                      <h1>--- " . round(microtime(true) - $startTime, 2) . " seconds ---</h1>\n");

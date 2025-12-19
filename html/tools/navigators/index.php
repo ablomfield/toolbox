@@ -9,14 +9,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 // Get Login Details
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
 
-// Get LGW Step
-if (isset($_REQUEST['toolstep'])) {
-    $toolstep = $_REQUEST['toolstep'];
-} elseif (isset($_SESSION['toolstep'])) {
-    $toolstep = $_SESSION['toolstep'];
-} else {
-    $toolstep = 0;
-}
+$orgid = $_SESSION["orgid"];
 
 ?>
 <!DOCTYPE HTML>
@@ -153,8 +146,6 @@ if (isset($_REQUEST['toolstep'])) {
                         echo "Total rooms retrieved: " . count($devices) . "\n";
 
                         // ---------------- OPEN FILE ----------------
-                        $fh = fopen($filename, "w");
-                        fwrite($fh, "\"Room Name\",\"Room Device\",\"Control Device\",\"Serial\",\"DRAM\"\n");
                         echo ("                      <table>\n");
                         echo ("                        <thead>\n");
                         echo ("                          <tr>\n");
@@ -227,7 +218,6 @@ if (isset($_REQUEST['toolstep'])) {
                         }
 
                         curl_multi_close($multi);
-                        fclose($fh);
                         echo ("                        </tbody>\n");
                         echo ("                      </table>\n");
                         echo ("                      <h1>--- " . round(microtime(true) - $startTime, 2) . " seconds ---</h1>\n");

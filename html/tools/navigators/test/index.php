@@ -5,6 +5,7 @@ $TIMEOUT = 10;
 $MAX_RETRIES = 5;
 $BACKOFF_BASE = 1.5;
 $BACKOFF_MAX = 30;
+set_time_limit(600);
 // ----------------------------------------
 
 function request_with_retry($method, $url, $headers, $payload = null) {

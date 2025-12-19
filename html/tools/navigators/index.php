@@ -146,7 +146,7 @@ $orgid = $_SESSION["orgid"];
                         echo "Total rooms retrieved: " . count($devices) . "\n";
 
                         // ---------------- OPEN FILE ----------------
-                        echo ("                      <table>\n");
+                        echo ("                      <table class=\"default\">\n");
                         echo ("                        <thead>\n");
                         echo ("                          <tr>\n");
                         echo ("                            <th>Room Name</th>\n");

@@ -144,10 +144,6 @@ $orgid = $_SESSION["orgid"];
                         }
 
                         echo "<h1>Total rooms retrieved: " . count($devices) . "</h1>\n";
-                        echo ("<textarea>\n");
-                        print_r($devices);
-                        echo ("</textarea>\n");
-
 
                         // ---------------- TABLE START ----------------
                         echo ("                      <table class=\"default\">\n");
@@ -170,7 +166,6 @@ $orgid = $_SESSION["orgid"];
                             $handles = [];
 
                             foreach ($batch as $device) {
-                                echo ("Checking {$device['displayName']}<br>\n");
                                 $payload = json_encode([
                                     "deviceId"  => $device['id'],
                                     "arguments" => ["Type" => "TouchPanel"]
@@ -193,7 +188,9 @@ $orgid = $_SESSION["orgid"];
                                 curl_multi_exec($multi, $running);
                                 curl_multi_select($multi);
                             } while ($running);
-
+                        echo ("<textarea>\n");
+                        print_r($handles);
+                        echo ("</textarea>\n");
                             foreach ($handles as [$ch, $device]) {
                                 $resp = json_decode(curl_multi_getcontent($ch), true);
                                 curl_multi_remove_handle($multi, $ch);

@@ -7,7 +7,7 @@ date_default_timezone_set("America/Chicago");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/settings.php");
 
 // Get Login Details
-include($_SERVER['DOCUMENT_ROOT'] . "/includes/checklogin.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/checkaccess.php");
 
 // Check Customer Set
 if (isset($_SESSION['orgname']) == false && $loggedin == true) {
